@@ -268,8 +268,8 @@
         "timeframe": null,
         "managementZone": null
       },
-      "customName": "Promotional User Revenue",
-      "query": "select sum(doubleProperties.revenueproperty) as \"Promotional User Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\" and useraction.name=\"PromStep\"",
+      "customName": "Average Order Value",
+      "query": "select avg(doubleProperties.revenueproperty) as \"Average Order Value\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\"",
       "type": "SINGLE_VALUE", "timeFrameShift": "-2h"
     },
     {

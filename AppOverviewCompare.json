@@ -3,7 +3,7 @@
     "configurationVersions": [
       2
     ],
-    "clusterVersion": "1.179.6.20190927-171452"
+    "clusterVersion": "1.180.0.20191002-164942"
   },
   "id": "56d9f8de-c0d1-4b91-8930-6641a73da313",
   "dashboardMetadata": {
@@ -31,13 +31,13 @@
         "height": 152
       },
       "tileFilter": {
-        "timeframe": null,
+        "timeframe": "-MyTimeh",
         "managementZone": null
       },
       "customName": "Satisfied Users",
       "query": "select count(usersessionid) as \"Sessions\" from usersession where useraction.application=\"MyApp\" and userExperienceScore=\"SATISFIED\"",
       "type": "SINGLE_VALUE",
-      "timeFrameShift": "-2h"
+      "timeFrameShift": "-MyTimeh"
     },
     {
       "name": "DTAQL",
@@ -50,13 +50,13 @@
         "height": 152
       },
       "tileFilter": {
-        "timeframe": null,
+        "timeframe": "-MyTimeh",
         "managementZone": null
       },
       "customName": "Tolerated Users",
       "query": "select count(usersessionid) as \"Sessions\" from usersession where useraction.application=\"MyApp\" and userExperienceScore=\"TOLERATED\"",
       "type": "SINGLE_VALUE",
-      "timeFrameShift": "-2h"
+      "timeFrameShift": "-MyTimeh"
     },
     {
       "name": "DTAQL",
@@ -69,13 +69,13 @@
         "height": 152
       },
       "tileFilter": {
-        "timeframe": null,
+        "timeframe": "-MyTimeh",
         "managementZone": null
       },
       "customName": "Frustrated Users",
       "query": "select count(usersessionid) as \"Sessions\" from usersession where useraction.application=\"MyApp\" and userExperienceScore=\"FRUSTRATED\"",
       "type": "SINGLE_VALUE",
-      "timeFrameShift": "-2h"
+      "timeFrameShift": "-MyTimeh"
     },
     {
       "name": "User Sessions Query",
@@ -88,13 +88,13 @@
         "height": 152
       },
       "tileFilter": {
-        "timeframe": null,
+        "timeframe": "-MyTimeh",
         "managementZone": null
       },
       "customName": "Duration",
       "query": "select PERCENTILE(duration,90) as \"90th Percentile\" from useraction where useraction.application=\"MyApp\"",
       "type": "SINGLE_VALUE",
-      "timeFrameShift": "-2h"
+      "timeFrameShift": "-MyTimeh"
     },
     {
       "name": "User Sessions Query",
@@ -107,13 +107,13 @@
         "height": 152
       },
       "tileFilter": {
-        "timeframe": null,
+        "timeframe": "-MyTimeh",
         "managementZone": null
       },
       "customName": "Visually Complete",
       "query": "select PERCENTILE(visuallyCompleteTime,90) as \"90th Percentile\" from useraction where useraction.application=\"MyApp\"",
       "type": "SINGLE_VALUE",
-      "timeFrameShift": "-2h"
+      "timeFrameShift": "-MyTimeh"
     },
     {
       "name": "User Sessions Query",
@@ -126,13 +126,13 @@
         "height": 152
       },
       "tileFilter": {
-        "timeframe": null,
+        "timeframe": "-MyTimeh",
         "managementZone": null
       },
       "customName": "Speed Index",
       "query": "select PERCENTILE(speedIndex,90) as \"90th Percentile\" from useraction where useraction.application=\"MyApp\"",
       "type": "SINGLE_VALUE",
-      "timeFrameShift": "-2h"
+      "timeFrameShift": "-MyTimeh"
     },
     {
       "name": "User behavior",
@@ -145,7 +145,7 @@
         "height": 304
       },
       "tileFilter": {
-        "timeframe": null,
+        "timeframe": "-MyTimeh",
         "managementZone": null
       },
       "assignedEntities": [
@@ -163,7 +163,7 @@
         "height": 304
       },
       "tileFilter": {
-        "timeframe": null,
+        "timeframe": "-MyTimeh",
         "managementZone": null
       },
       "assignedEntities": [
@@ -181,7 +181,7 @@
         "height": 304
       },
       "tileFilter": {
-        "timeframe": null,
+        "timeframe": "-MyTimeh",
         "managementZone": null
       },
       "assignedEntities": [
@@ -199,7 +199,7 @@
         "height": 304
       },
       "tileFilter": {
-        "timeframe": null,
+        "timeframe": "-MyCompareTimeh to -MyTimeh",
         "managementZone": null
       },
       "assignedEntities": [
@@ -217,7 +217,7 @@
         "height": 304
       },
       "tileFilter": {
-        "timeframe": null,
+        "timeframe": "-MyCompareTimeh to -MyTimeh",
         "managementZone": null
       },
       "assignedEntities": [
@@ -235,7 +235,7 @@
         "height": 304
       },
       "tileFilter": {
-        "timeframe": null,
+        "timeframe": "-MyCompareTimeh to -MyTimeh",
         "managementZone": null
       },
       "assignedEntities": [
@@ -253,13 +253,13 @@
         "height": 152
       },
       "tileFilter": {
-        "timeframe": null,
+        "timeframe": "-MyCompareTimeh to -MyTimeh",
         "managementZone": null
       },
       "customName": "Satisfied Users",
       "query": "select count(usersessionid) as \"Sessions\" from usersession where useraction.application=\"MyCompareApp\" and userExperienceScore=\"SATISFIED\"",
       "type": "SINGLE_VALUE",
-      "timeFrameShift": "-2h"
+      "timeFrameShift": "-MyTimeh"
     },
     {
       "name": "DTAQL",
@@ -272,13 +272,13 @@
         "height": 152
       },
       "tileFilter": {
-        "timeframe": null,
+        "timeframe": "-MyCompareTimeh to -MyTimeh",
         "managementZone": null
       },
       "customName": "Tolerated Users",
       "query": "select count(usersessionid) as \"Sessions\" from usersession where useraction.application=\"MyCompareApp\" and userExperienceScore=\"TOLERATED\"",
       "type": "SINGLE_VALUE",
-      "timeFrameShift": "-2h"
+      "timeFrameShift": "-MyTimeh"
     },
     {
       "name": "DTAQL",
@@ -291,13 +291,13 @@
         "height": 152
       },
       "tileFilter": {
-        "timeframe": null,
+        "timeframe": "-MyCompareTimeh to -MyTimeh",
         "managementZone": null
       },
       "customName": "Frustrated Users",
       "query": "select count(usersessionid) as \"Sessions\" from usersession where useraction.application=\"MyCompareApp\" and userExperienceScore=\"FRUSTRATED\"",
       "type": "SINGLE_VALUE",
-      "timeFrameShift": "-2h"
+      "timeFrameShift": "-MyTimeh"
     },
     {
       "name": "User Sessions Query",
@@ -310,13 +310,13 @@
         "height": 152
       },
       "tileFilter": {
-        "timeframe": null,
+        "timeframe": "-MyCompareTimeh to -MyTimeh",
         "managementZone": null
       },
       "customName": "Duration",
       "query": "select PERCENTILE(duration,90) as \"90th Percentile\" from useraction where useraction.application=\"MyCompareApp\"",
       "type": "SINGLE_VALUE",
-      "timeFrameShift": "-2h"
+      "timeFrameShift": "-MyTimeh"
     },
     {
       "name": "User Sessions Query",
@@ -329,13 +329,13 @@
         "height": 152
       },
       "tileFilter": {
-        "timeframe": null,
+        "timeframe": "-MyCompareTimeh to -MyTimeh",
         "managementZone": null
       },
       "customName": "Visually Complete",
       "query": "select PERCENTILE(visuallyCompleteTime,90) as \"90th Percentile\" from useraction where useraction.application=\"MyCompareApp\"",
       "type": "SINGLE_VALUE",
-      "timeFrameShift": "-2h"
+      "timeFrameShift": "-MyTimeh"
     },
     {
       "name": "User Sessions Query",
@@ -348,13 +348,13 @@
         "height": 152
       },
       "tileFilter": {
-        "timeframe": null,
+        "timeframe": "-MyCompareTimeh to -MyTimeh",
         "managementZone": null
       },
       "customName": "Speed Index",
       "query": "select PERCENTILE(speedIndex,90) as \"90th Percentile\" from useraction where useraction.application=\"MyCompareApp\"",
       "type": "SINGLE_VALUE",
-      "timeFrameShift": "-2h"
+      "timeFrameShift": "-MyTimeh"
     },
     {
       "name": "Markdown",
@@ -403,13 +403,13 @@
       }
     },
     {
-      "name": "MyApp",
+      "name": "MyApp (Last MyTime Hours)",
       "tileType": "HEADER",
       "configured": true,
       "bounds": {
         "top": 38,
-        "left": 722,
-        "width": 304,
+        "left": 646,
+        "width": 418,
         "height": 38
       },
       "tileFilter": {
@@ -418,13 +418,13 @@
       }
     },
     {
-      "name": "MyCompareApp",
+      "name": "MyCompareApp (Previous MyTime Hours)",
       "tileType": "HEADER",
       "configured": true,
       "bounds": {
         "top": 456,
-        "left": 722,
-        "width": 304,
+        "left": 646,
+        "width": 418,
         "height": 38
       },
       "tileFilter": {
