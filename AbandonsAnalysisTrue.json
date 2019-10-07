@@ -35,7 +35,7 @@
 				"managementZone": null
 			},
 			"customName": "\ud83d\ude0a",
-			"query": "select count(distinct userSessionId) as \"Abandons Count\" FROM usersession where useraction.application=\"MyApp\" and\n\tuserExperienceScore=\"SATISFIED\" and useraction.name!=\"LastStep\" and\n\tdoubleProperties.revenueproperty>0\n",
+			"query": "select count(distinct userSessionId) as \"Abandons Count\" FROM usersession where useraction.application=\"MyApp\" and\n\tuserExperienceScore=\"SATISFIED\" and useraction.name!=\"LastStep\" and\n\trevenueproperty>0\n",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		},
 		{
@@ -53,7 +53,7 @@
 				"managementZone": null
 			},
 			"customName": "\ud83d\ude1f",
-			"query": "select count(distinct userSessionId) as \"Abandons Count\" FROM usersession where useraction.application=\"MyApp\" and\n\tuserExperienceScore=\"TOLERATED\" and useraction.name!=\"LastStep\" and\n\tdoubleProperties.revenueproperty>0\n",
+			"query": "select count(distinct userSessionId) as \"Abandons Count\" FROM usersession where useraction.application=\"MyApp\" and\n\tuserExperienceScore=\"TOLERATED\" and useraction.name!=\"LastStep\" and\n\trevenueproperty>0\n",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		},
 		{
@@ -71,7 +71,7 @@
 				"managementZone": null
 			},
 			"customName": "\ud83d\ude22",
-			"query": "select count(distinct userSessionId) as \"Abandons Count\" FROM usersession where useraction.application=\"MyApp\" and\n\tuserExperienceScore=\"FRUSTRATED\" and useraction.name!=\"LastStep\" and\n\tdoubleProperties.revenueproperty>0\n",
+			"query": "select count(distinct userSessionId) as \"Abandons Count\" FROM usersession where useraction.application=\"MyApp\" and\n\tuserExperienceScore=\"FRUSTRATED\" and useraction.name!=\"LastStep\" and\n\trevenueproperty>0\n",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		},
 		{
@@ -89,7 +89,7 @@
 				"managementZone": null
 			},
 			"customName": "\u2620",
-			"query": "select DISTINCT DATETIME(starttime, \"HH:mm\", \"10m\") as \"Time\", sum(doubleProperties.revenueproperty) as \"Lost Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name != \"LastStep\" ",
+			"query": "select DISTINCT DATETIME(starttime, \"HH:mm\", \"10m\") as \"Time\", sum(revenueproperty) as \"Lost Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name != \"LastStep\" ",
 			"type": "COLUMN_CHART"
 		},
 		{
@@ -138,7 +138,7 @@
 				"managementZone": null
 			},
 			"customName": "\u2620",
-			"query": "select distinct DATETIME(starttime, \"HH:mm\", \"10m\") as \"Time\", count(userSessionId) as \"Abandons Count\" FROM usersession where useraction.application=\"MyApp\" and\n\tuseraction.name!=\"LastStep\" and\n\tdoubleProperties.revenueproperty>0\n",
+			"query": "select distinct DATETIME(starttime, \"HH:mm\", \"10m\") as \"Time\", count(userSessionId) as \"Abandons Count\" FROM usersession where useraction.application=\"MyApp\" and\n\tuseraction.name!=\"LastStep\" and\n\trevenueproperty>0\n",
 			"type": "COLUMN_CHART"
 		},
 		{
@@ -170,7 +170,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [Satisfied](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22,%20doubleProperties.revenueproperty%20as%20%22Revenue%22%20FROM%20usersession%20where%0A%09userExperienceScore%3D%22SATISFIED%22%20and%20useraction.name!%3D%22LastStep%22%20and%0A%09doubleProperties.revenueproperty%3E0%20order%20by%20doubleProperties.revenueproperty%20desc&visualization=TABLE)"
+			"markdown": "## [Satisfied](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22,%20revenueproperty%20as%20%22Revenue%22%20FROM%20usersession%20where%0A%09userExperienceScore%3D%22SATISFIED%22%20and%20useraction.name!%3D%22LastStep%22%20and%0A%09revenueproperty%3E0%20order%20by%20revenueproperty%20desc&visualization=TABLE)"
 		},
 		{
 			"name": "Markdown",
@@ -186,7 +186,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [Tolerated](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22,%20doubleProperties.revenueproperty%20as%20%22Revenue%22%20FROM%20usersession%20where%0A%09userExperienceScore%3D%22TOLERATED%22%20and%20useraction.name!%3D%22LastStep%22%20and%0A%09doubleProperties.revenueproperty%3E0%20order%20by%20doubleProperties.revenueproperty%20desc&visualization=TABLE)"
+			"markdown": "## [Tolerated](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22,%20revenueproperty%20as%20%22Revenue%22%20FROM%20usersession%20where%0A%09userExperienceScore%3D%22TOLERATED%22%20and%20useraction.name!%3D%22LastStep%22%20and%0A%09revenueproperty%3E0%20order%20by%20revenueproperty%20desc&visualization=TABLE)"
 		},
 		{
 			"name": "Markdown",
@@ -202,7 +202,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [Frustrated](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22,%20doubleProperties.revenueproperty%20as%20%22Revenue%22%20FROM%20usersession%20where%0A%09userExperienceScore%3D%22FRUSTRATED%22%20and%20useraction.name!%3D%22LastStep%22%20and%0A%09doubleProperties.revenueproperty%3E0%20order%20by%20doubleProperties.revenueproperty%20desc&visualization=TABLE)"
+			"markdown": "## [Frustrated](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22,%20revenueproperty%20as%20%22Revenue%22%20FROM%20usersession%20where%0A%09userExperienceScore%3D%22FRUSTRATED%22%20and%20useraction.name!%3D%22LastStep%22%20and%0A%09revenueproperty%3E0%20order%20by%20revenueproperty%20desc&visualization=TABLE)"
 		},
 		{
 			"name": "Markdown",
@@ -218,7 +218,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [Satisfied](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22,%20doubleProperties.revenueproperty%20as%20%22Revenue%22%20FROM%20usersession%20where%0A%09userExperienceScore%3D%22SATISFIED%22%20and%20useraction.name!%3D%22LastStep%22%20and%0A%09doubleProperties.revenueproperty%3E0%20order%20by%20doubleProperties.revenueproperty%20desc&visualization=TABLE)"
+			"markdown": "## [Satisfied](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22,%20revenueproperty%20as%20%22Revenue%22%20FROM%20usersession%20where%0A%09userExperienceScore%3D%22SATISFIED%22%20and%20useraction.name!%3D%22LastStep%22%20and%0A%09revenueproperty%3E0%20order%20by%20revenueproperty%20desc&visualization=TABLE)"
 		},
 		{
 			"name": "Markdown",
@@ -234,7 +234,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [Tolerated](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22,%20doubleProperties.revenueproperty%20as%20%22Revenue%22%20FROM%20usersession%20where%0A%09userExperienceScore%3D%22TOLERATED%22%20and%20useraction.name!%3D%22LastStep%22%20and%0A%09doubleProperties.revenueproperty%3E0%20order%20by%20doubleProperties.revenueproperty%20desc&visualization=TABLE)"
+			"markdown": "## [Tolerated](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22,%20revenueproperty%20as%20%22Revenue%22%20FROM%20usersession%20where%0A%09userExperienceScore%3D%22TOLERATED%22%20and%20useraction.name!%3D%22LastStep%22%20and%0A%09revenueproperty%3E0%20order%20by%20revenueproperty%20desc&visualization=TABLE)"
 		},
 		{
 			"name": "Markdown",
@@ -250,7 +250,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [Frustrated](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22,%20doubleProperties.revenueproperty%20as%20%22Revenue%22%20FROM%20usersession%20where%0A%09userExperienceScore%3D%22FRUSTRATED%22%20and%20useraction.name!%3D%22LastStep%22%20and%0A%09doubleProperties.revenueproperty%3E0%20order%20by%20doubleProperties.revenueproperty%20desc&visualization=TABLE)"
+			"markdown": "## [Frustrated](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22,%20revenueproperty%20as%20%22Revenue%22%20FROM%20usersession%20where%0A%09userExperienceScore%3D%22FRUSTRATED%22%20and%20useraction.name!%3D%22LastStep%22%20and%0A%09revenueproperty%3E0%20order%20by%20revenueproperty%20desc&visualization=TABLE)"
 		},
 		{
 			"name": "DTAQL",
@@ -267,7 +267,7 @@
 				"managementZone": null
 			},
 			"customName": "\ud83d\ude0a",
-			"query": "select sum(doubleProperties.revenueproperty) as \"Lost Revenue\" FROM usersession where useraction.application=\"MyApp\" and\n\tuserExperienceScore=\"SATISFIED\" and useraction.name!=\"LastStep\" and\n\tdoubleProperties.revenueproperty>0\n",
+			"query": "select sum(revenueproperty) as \"Lost Revenue\" FROM usersession where useraction.application=\"MyApp\" and\n\tuserExperienceScore=\"SATISFIED\" and useraction.name!=\"LastStep\" and\n\trevenueproperty>0\n",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		},
 		{
@@ -285,7 +285,7 @@
 				"managementZone": null
 			},
 			"customName": "\ud83d\ude1f",
-			"query": "select sum(doubleProperties.revenueproperty) as \"Lost Revenue\" FROM usersession where useraction.application=\"MyApp\" and\n\tuserExperienceScore=\"TOLERATED\" and useraction.name!=\"LastStep\" and\n\tdoubleProperties.revenueproperty>0\n",
+			"query": "select sum(revenueproperty) as \"Lost Revenue\" FROM usersession where useraction.application=\"MyApp\" and\n\tuserExperienceScore=\"TOLERATED\" and useraction.name!=\"LastStep\" and\n\trevenueproperty>0\n",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		},
 		{
@@ -303,7 +303,7 @@
 				"managementZone": null
 			},
 			"customName": "\ud83d\ude22",
-			"query": "select sum(doubleProperties.revenueproperty) as \"Lost Revenue\" FROM usersession where useraction.application=\"MyApp\" and\n\tuserExperienceScore=\"FRUSTRATED\" and useraction.name!=\"LastStep\" and\n\tdoubleProperties.revenueproperty>0\n",
+			"query": "select sum(revenueproperty) as \"Lost Revenue\" FROM usersession where useraction.application=\"MyApp\" and\n\tuserExperienceScore=\"FRUSTRATED\" and useraction.name!=\"LastStep\" and\n\trevenueproperty>0\n",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		},
 		{
@@ -381,7 +381,7 @@
 				"managementZone": null
 			},
 			"customName": "\u2620",
-			"query": "SELECT userExperienceScore, sum(doubleProperties.revenueproperty) FROM usersession where useraction.application=\"MyApp\" and useraction.name!=\"LastStep\" group by userExperienceScore order by sum(doubleProperties.revenueproperty) desc",
+			"query": "SELECT userExperienceScore, sum(revenueproperty) FROM usersession where useraction.application=\"MyApp\" and useraction.name!=\"LastStep\" group by userExperienceScore order by sum(revenueproperty) desc",
 			"type": "PIE_CHART"
 		},
 		{
@@ -399,7 +399,7 @@
 				"managementZone": null
 			},
 			"customName": "\u2620",
-			"query": "SELECT browserFamily, sum(doubleProperties.revenueproperty) FROM usersession where useraction.application=\"MyApp\" and useraction.name!=\"LastStep\" group by browserFamily order by sum(doubleProperties.revenueproperty) desc",
+			"query": "SELECT browserFamily, sum(revenueproperty) FROM usersession where useraction.application=\"MyApp\" and useraction.name!=\"LastStep\" group by browserFamily order by sum(revenueproperty) desc",
 			"type": "PIE_CHART"
 		},
 		{
@@ -452,7 +452,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [Lost Revenue](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22,%20doubleProperties.revenueproperty%20as%20%22Lost%20Revenue%22%20FROM%20usersession%20where%0A%09useraction.name!%3D%22LastStep%22%20and%0A%09doubleProperties.revenueproperty%3E0%20order%20by%20doubleProperties.revenueproperty%20desc%0A&visualization=TABLE)"
+			"markdown": "## [Lost Revenue](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22,%20revenueproperty%20as%20%22Lost%20Revenue%22%20FROM%20usersession%20where%0A%09useraction.name!%3D%22LastStep%22%20and%0A%09revenueproperty%3E0%20order%20by%20revenueproperty%20desc%0A&visualization=TABLE)"
 		},
 		{
 			"name": "Markdown",
@@ -468,7 +468,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [Abandons](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22,%20doubleProperties.revenueproperty%20as%20%22Revenue%22%20FROM%20usersession%20where%0A%09useraction.name!%3D%22LastStep%22%20and%0A%09doubleProperties.revenueproperty%3E0%20order%20by%20doubleProperties.revenueproperty%20desc%0A&visualization=TABLE)"
+			"markdown": "## [Abandons](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22,%20revenueproperty%20as%20%22Revenue%22%20FROM%20usersession%20where%0A%09useraction.name!%3D%22LastStep%22%20and%0A%09revenueproperty%3E0%20order%20by%20revenueproperty%20desc%0A&visualization=TABLE)"
 		},
 		{
 			"name": "User Sessions Query",
@@ -485,7 +485,7 @@
 				"managementZone": null
 			},
 			"customName": "\u2620",
-			"query": "select sum(doubleProperties.revenueproperty) as \"Lost Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name != \"LastStep\"",
+			"query": "select sum(revenueproperty) as \"Lost Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name != \"LastStep\"",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		},
 		{
@@ -503,7 +503,7 @@
 				"managementZone": null
 			},
 			"customName": "\u2620",
-			"query": "select count(distinct userSessionId) as \"Abandons Count\" FROM usersession where useraction.application=\"MyApp\" and\n\tuseraction.name!=\"LastStep\" and\n\tdoubleProperties.revenueproperty>0\n",
+			"query": "select count(distinct userSessionId) as \"Abandons Count\" FROM usersession where useraction.application=\"MyApp\" and\n\tuseraction.name!=\"LastStep\" and\n\trevenueproperty>0\n",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		}
 	]

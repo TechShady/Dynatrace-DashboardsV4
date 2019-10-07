@@ -35,7 +35,7 @@
         "managementZone": null
       },
       "customName": "\ud83d\ude0a",
-      "query": "select sum(doubleProperties.revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name = \"LastStep\"",
+      "query": "select sum(revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name = \"LastStep\"",
       "type": "SINGLE_VALUE", "timeFrameShift": "-2h"
     },
     {
@@ -53,7 +53,7 @@
         "managementZone": null
       },
       "customName": "\ud83d\ude1f",
-      "query": "select sum(doubleProperties.revenueproperty) as \"Risk Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name = \"LastStep\" and userExperienceScore!=\"SATISFIED\"",
+      "query": "select sum(revenueproperty) as \"Risk Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name = \"LastStep\" and userExperienceScore!=\"SATISFIED\"",
       "type": "SINGLE_VALUE", "timeFrameShift": "-2h"
     },
     {
@@ -71,7 +71,7 @@
         "managementZone": null
       },
       "customName": "\ud83d\ude22",
-      "query": "select sum(doubleProperties.revenueproperty) as \"Lost Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name != \"LastStep\"",
+      "query": "select sum(revenueproperty) as \"Lost Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name != \"LastStep\"",
       "type": "SINGLE_VALUE", "timeFrameShift": "-2h"
     },
     {
@@ -89,7 +89,7 @@
         "managementZone": null
       },
       "customName": "\ud83d\ude1f",
-      "query": "select DISTINCT DATETIME(starttime, \"HH:mm\", \"10m\") as \"Time\", sum(doubleProperties.revenueproperty) as \"Risk Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name = \"LastStep\"  and userExperienceScore!=\"SATISFIED\"",
+      "query": "select DISTINCT DATETIME(starttime, \"HH:mm\", \"10m\") as \"Time\", sum(revenueproperty) as \"Risk Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name = \"LastStep\"  and userExperienceScore!=\"SATISFIED\"",
       "type": "COLUMN_CHART"
     },
     {
@@ -106,7 +106,7 @@
         "timeframe": null,
         "managementZone": null
       },
-      "markdown": "## [Revenue](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid%20as%20%22User%22,%20doubleProperties.revenueproperty%20as%20%22Revenue%22%20FROM%20usersession%20where%20useraction.name%20%3D%20%22LastStep%22%20and%20doubleProperties.revenueproperty%3E0%20order%20by%20doubleProperties.revenueproperty%20DESC&visualization=TABLE)"
+      "markdown": "## [Revenue](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid%20as%20%22User%22,%20revenueproperty%20as%20%22Revenue%22%20FROM%20usersession%20where%20useraction.name%20%3D%20%22LastStep%22%20and%20revenueproperty%3E0%20order%20by%20revenueproperty%20DESC&visualization=TABLE)"
     },
     {
       "name": "Markdown",
@@ -122,7 +122,7 @@
         "timeframe": null,
         "managementZone": null
       },
-      "markdown": "## [Risk Revenue](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid%20as%20%22User%22,%20doubleProperties.revenueproperty%20as%20%22Risk%20Revenue%22%20FROM%20usersession%20where%20useraction.name%20%3D%20%22LastStep%22%20and%20userExperienceScore!%3D%22SATISFIED%22%20and%20doubleProperties.revenueproperty%3E0%20order%20by%20doubleProperties.revenueproperty%20DESC&visualization=TABLE)"
+      "markdown": "## [Risk Revenue](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid%20as%20%22User%22,%20revenueproperty%20as%20%22Risk%20Revenue%22%20FROM%20usersession%20where%20useraction.name%20%3D%20%22LastStep%22%20and%20userExperienceScore!%3D%22SATISFIED%22%20and%20revenueproperty%3E0%20order%20by%20revenueproperty%20DESC&visualization=TABLE)"
     },
     {
       "name": "Markdown",
@@ -138,7 +138,7 @@
         "timeframe": null,
         "managementZone": null
       },
-      "markdown": "## [Lost Revenue](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid%20as%20%22User%22,%20doubleProperties.revenueproperty%20as%20%22Lost%20Revenue%22%20FROM%20usersession%20where%20useraction.name%20!%3D%20%22LastStep%22%20and%20doubleProperties.revenueproperty%3E0%20order%20by%20doubleProperties.revenueproperty%20DESC&visualization=TABLE)"
+      "markdown": "## [Lost Revenue](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid%20as%20%22User%22,%20revenueproperty%20as%20%22Lost%20Revenue%22%20FROM%20usersession%20where%20useraction.name%20!%3D%20%22LastStep%22%20and%20revenueproperty%3E0%20order%20by%20revenueproperty%20DESC&visualization=TABLE)"
     },
     {
       "name": "Markdown",
@@ -171,7 +171,7 @@
         "managementZone": null
       },
       "customName": "\ud83d\ude1f",
-      "query": "select sum(doubleProperties.revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name = \"LastStep\" and newUser=true and userExperienceScore!=\"SATISFIED\"",
+      "query": "select sum(revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name = \"LastStep\" and newUser=true and userExperienceScore!=\"SATISFIED\"",
       "type": "SINGLE_VALUE", "timeFrameShift": "-2h"
     },
     {
@@ -189,7 +189,7 @@
         "managementZone": null
       },
       "customName": "\ud83d\ude1f",
-      "query": "select sum(doubleProperties.revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name = \"LastStep\" and newUser=false and userExperienceScore!=\"SATISFIED\"",
+      "query": "select sum(revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name = \"LastStep\" and newUser=false and userExperienceScore!=\"SATISFIED\"",
       "type": "SINGLE_VALUE", "timeFrameShift": "-2h"
     },
     {
@@ -206,7 +206,7 @@
         "timeframe": null,
         "managementZone": null
       },
-      "markdown": "## [New User Risk Revenue](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid%20as%20%22User%22,%20doubleProperties.revenue%20as%20%22Revenue%22%20FROM%20usersession%20where%20useraction.name%20%3D%20%22LastStep%22%20and%20doubleProperties.revenue%3E0%20%20and%20newUser%3Dtrue%20and%20userExperienceScore!%3D%22SATISFIED%22%20order%20by%20doubleProperties.revenue%20DESC&visualization=TABLE)"
+      "markdown": "## [New User Risk Revenue](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid%20as%20%22User%22,%20revenueproperty%20as%20%22Revenue%22%20FROM%20usersession%20where%20useraction.name%20%3D%20%22LastStep%22%20and%20revenueproperty%3E0%20%20and%20newUser%3Dtrue%20and%20userExperienceScore!%3D%22SATISFIED%22%20order%20by%20revenueproperty%20DESC&visualization=TABLE)"
     },
     {
       "name": "Markdown",
@@ -222,7 +222,7 @@
         "timeframe": null,
         "managementZone": null
       },
-      "markdown": "## [Returning User Risk Revenue](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid%20as%20%22User%22,%20doubleProperties.revenue%20as%20%22Revenue%22%20FROM%20usersession%20where%20useraction.name%20%3D%20%22LastStep%22%20and%20doubleProperties.revenue%3E0%20%20and%20newUser%3Dfalse%20and%20userExperienceScore!%3D%22SATISFIED%22%20order%20by%20doubleProperties.revenue%20DESC&visualization=TABLE)"
+      "markdown": "## [Returning User Risk Revenue](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid%20as%20%22User%22,%20revenueproperty%20as%20%22Revenue%22%20FROM%20usersession%20where%20useraction.name%20%3D%20%22LastStep%22%20and%20revenueproperty%3E0%20%20and%20newUser%3Dfalse%20and%20userExperienceScore!%3D%22SATISFIED%22%20order%20by%20revenueproperty%20DESC&visualization=TABLE)"
     },
     {
       "name": "Risk Revenue Over Time",

@@ -35,7 +35,7 @@
         "managementZone": null
       },
       "customName": "Revenue",
-      "query": "select sum(doubleProperties.revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\"",
+      "query": "select sum(revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\"",
       "type": "SINGLE_VALUE", "timeFrameShift": "-2h"
     },
     {
@@ -53,7 +53,7 @@
         "managementZone": null
       },
       "customName": "Lost Revenue",
-      "query": "select sum(doubleProperties.revenueproperty) as \"Lost Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name!=\"LastStep\"",
+      "query": "select sum(revenueproperty) as \"Lost Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name!=\"LastStep\"",
       "type": "SINGLE_VALUE", "timeFrameShift": "-2h"
     },
     {
@@ -143,7 +143,7 @@
         "managementZone": null
       },
       "customName": "Risk Revenue",
-      "query": "select sum(doubleProperties.revenueproperty) as \"Risk Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name = \"LastStep\" and (userExperienceScore =\"TOLERATED\" or userExperienceScore =\"FRUSTRATED\" or userExperienceScore =\"UNDEFINED\")",
+      "query": "select sum(revenueproperty) as \"Risk Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name = \"LastStep\" and (userExperienceScore =\"TOLERATED\" or userExperienceScore =\"FRUSTRATED\" or userExperienceScore =\"UNDEFINED\")",
       "type": "SINGLE_VALUE", "timeFrameShift": "-2h"
     },
     {
@@ -251,7 +251,7 @@
         "managementZone": null
       },
       "customName": "New User Revenue",
-      "query": "select sum(doubleProperties.revenueproperty) as \"New User Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\" and newUser IS true",
+      "query": "select sum(revenueproperty) as \"New User Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\" and newUser IS true",
       "type": "SINGLE_VALUE", "timeFrameShift": "-2h"
     },
     {
@@ -269,7 +269,7 @@
         "managementZone": null
       },
       "customName": "Average Order Value",
-      "query": "select avg(doubleProperties.revenueproperty) as \"Average Order Value\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\"",
+      "query": "select avg(revenueproperty) as \"Average Order Value\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\"",
       "type": "SINGLE_VALUE", "timeFrameShift": "-2h"
     },
     {
@@ -287,7 +287,7 @@
         "managementZone": null
       },
       "customName": "\ud83d\udcb0",
-      "query": "select DISTINCT DATETIME(starttime, \"HH:mm\", \"10m\") as \"Time\", sum(doubleProperties.revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name = \"LastStep\" ",
+      "query": "select DISTINCT DATETIME(starttime, \"HH:mm\", \"10m\") as \"Time\", sum(revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name = \"LastStep\" ",
       "type": "COLUMN_CHART"
     },
     {

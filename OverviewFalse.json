@@ -211,7 +211,7 @@
         "managementZone": null
       },
       "customName": "Rage Clicks",
-      "query": "select sum(numberOfRageClicks) as \"Rage Clicks\" FROM usersession ",
+      "query": "select sum(numberOfRageClicks) as \"Rage Clicks\" FROM usersession where useraction.application=\"MyApp\"",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -536,6 +536,22 @@
       "customName": "Duration",
       "query": "select DISTINCT DATETIME(starttime, \"HH:mm\", \"10m\") as \"Time\", AVG(duration) as \"Duration\" FROM usersession where useraction.application=\"MyApp\" and useraction.name = \"LastStep\"",
       "type": "COLUMN_CHART"
+    },
+    {
+      "name": "Markdown",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 798,
+        "left": 0,
+        "width": 266,
+        "height": 38
+      },
+      "tileFilter": {
+        "timeframe": null,
+        "managementZone": null
+      },
+      "markdown": "## [Overview Compare](#dashboard;id=6e481cc8-bea9-46ba-b1f8-23ebdd1da313)"
     }
   ]
 }

@@ -195,7 +195,7 @@
         "managementZone": null
       },
       "customName": "Revenue",
-      "query": "select sum(doubleProperties.revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\"",
+      "query": "select sum(revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\"",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -214,7 +214,7 @@
         "managementZone": null
       },
       "customName": "Lost Revenue",
-      "query": "select sum(doubleProperties.revenueproperty) as \"Lost Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name!=\"LastStep\"",
+      "query": "select sum(revenueproperty) as \"Lost Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name!=\"LastStep\"",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -233,7 +233,7 @@
         "managementZone": null
       },
       "customName": "Rage Clicks",
-      "query": "select sum(numberOfRageClicks) as \"Rage Clicks\" FROM usersession ",
+      "query": "select sum(numberOfRageClicks) as \"Rage Clicks\" FROM usersession where useraction.application=\"MyApp\"",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -252,7 +252,7 @@
         "managementZone": null
       },
       "customName": "Risk Revenue",
-      "query": "select sum(doubleProperties.revenueproperty) as \"Risk Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name = \"LastStep\" and (userExperienceScore =\"TOLERATED\" or userExperienceScore =\"FRUSTRATED\" or userExperienceScore =\"UNDEFINED\")",
+      "query": "select sum(revenueproperty) as \"Risk Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name = \"LastStep\" and (userExperienceScore =\"TOLERATED\" or userExperienceScore =\"FRUSTRATED\" or userExperienceScore =\"UNDEFINED\")",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -271,7 +271,7 @@
         "managementZone": null
       },
       "customName": "Satisfied Users",
-      "query": "select count(usersessionid) as \"Conversions\" from usersession where useraction.application=\"MyApp\" and useraction.name in (\"LastStep\") and userExperienceScore=\"SATISFIED\" and doubleProperties.revenueproperty>0",
+      "query": "select count(usersessionid) as \"Conversions\" from usersession where useraction.application=\"MyApp\" and useraction.name in (\"LastStep\") and userExperienceScore=\"SATISFIED\" and revenueproperty>0",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -290,7 +290,7 @@
         "managementZone": null
       },
       "customName": "Tolerated Users",
-      "query": "select count(usersessionid) as \"Conversions\" from usersession where useraction.application=\"MyApp\" and useraction.name in (\"LastStep\") and userExperienceScore=\"TOLERATED\" and doubleProperties.revenueproperty>0",
+      "query": "select count(usersessionid) as \"Conversions\" from usersession where useraction.application=\"MyApp\" and useraction.name in (\"LastStep\") and userExperienceScore=\"TOLERATED\" and revenueproperty>0",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -309,7 +309,7 @@
         "managementZone": null
       },
       "customName": "Frustrated Users",
-      "query": "select count(usersessionid) as \"Conversions\" from usersession where useraction.application=\"MyApp\" and useraction.name in (\"LastStep\") and userExperienceScore=\"FRUSTRATED\" and doubleProperties.revenueproperty>0",
+      "query": "select count(usersessionid) as \"Conversions\" from usersession where useraction.application=\"MyApp\" and useraction.name in (\"LastStep\") and userExperienceScore=\"FRUSTRATED\" and revenueproperty>0",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -347,7 +347,7 @@
         "managementZone": null
       },
       "customName": "Satisfied Users",
-      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"Step1\" and useraction.name !=\"LastStep\" and userExperienceScore=\"SATISFIED\" and doubleProperties.revenueproperty>0",
+      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"Step1\" and useraction.name !=\"LastStep\" and userExperienceScore=\"SATISFIED\" and revenueproperty>0",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -366,7 +366,7 @@
         "managementZone": null
       },
       "customName": "Tolerated Users",
-      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"Step1\" and useraction.name !=\"LastStep\" and userExperienceScore=\"TOLERATED\" and doubleProperties.revenueproperty>0",
+      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"Step1\" and useraction.name !=\"LastStep\" and userExperienceScore=\"TOLERATED\" and revenueproperty>0",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -385,7 +385,7 @@
         "managementZone": null
       },
       "customName": "Frustrated Users",
-      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"Step1\" and useraction.name !=\"LastStep\" and userExperienceScore=\"FRUSTRATED\" and doubleProperties.revenueproperty>0",
+      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"Step1\" and useraction.name !=\"LastStep\" and userExperienceScore=\"FRUSTRATED\" and revenueproperty>0",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -442,7 +442,7 @@
         "managementZone": null
       },
       "customName": "New User Revenue",
-      "query": "select sum(doubleProperties.revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"Step1\" and useraction.name=\"LastStep\" and newUser IS true",
+      "query": "select sum(revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"Step1\" and useraction.name=\"LastStep\" and newUser IS true",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -461,7 +461,7 @@
         "managementZone": null
       },
       "customName": "Returning User Revenue",
-      "query": "select sum(doubleProperties.revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"Step1\" and useraction.name=\"LastStep\" and newUser IS false",
+      "query": "select sum(revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"Step1\" and useraction.name=\"LastStep\" and newUser IS false",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -496,7 +496,7 @@
         "managementZone": null
       },
       "customName": "Revenue",
-      "query": "select userExperienceScore, sum(doubleProperties.revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\" group by userExperienceScore",
+      "query": "select userExperienceScore, sum(revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\" group by userExperienceScore",
       "type": "PIE_CHART"
     },
     {
@@ -534,6 +534,22 @@
       "customName": "Abandons",
       "query": "select userExperienceScore, count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name = \"Step1\" and useraction.name!=\"LastStep\" group by userExperienceScore",
       "type": "PIE_CHART"
+    },
+    {
+      "name": "Markdown",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 798,
+        "left": 0,
+        "width": 266,
+        "height": 38
+      },
+      "tileFilter": {
+        "timeframe": null,
+        "managementZone": null
+      },
+      "markdown": "## [Overview Compare](#dashboard;id=6e481cc8-bea9-46ba-b1f8-23ebdd1da313)"
     }
   ]
 }

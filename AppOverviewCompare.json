@@ -221,7 +221,7 @@
         "managementZone": null
       },
       "assignedEntities": [
-        "InternalAppID"
+        "InternalCompareAppID"
       ]
     },
     {
@@ -403,13 +403,13 @@
       }
     },
     {
-      "name": "MyApp (Last MyTime Hours)",
+      "name": "MyApp Last MyTime Hours",
       "tileType": "HEADER",
       "configured": true,
       "bounds": {
         "top": 38,
-        "left": 646,
-        "width": 418,
+        "left": 38,
+        "width": 912,
         "height": 38
       },
       "tileFilter": {
@@ -418,13 +418,13 @@
       }
     },
     {
-      "name": "MyCompareApp (Previous MyTime Hours)",
+      "name": "MyCompareApp Previous MyTime Hours",
       "tileType": "HEADER",
       "configured": true,
       "bounds": {
         "top": 456,
-        "left": 646,
-        "width": 418,
+        "left": 38,
+        "width": 912,
         "height": 38
       },
       "tileFilter": {
