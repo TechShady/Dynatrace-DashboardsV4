@@ -176,12 +176,18 @@ set /a "stepcount = (line - 5)/2"
 set laststep=!laststep:"=\\""\\""""!
 REM Get Internal APP ID
 curl -X GET "https://!tenant!/api/config/v1/applications/web" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" > ./Transform/ApplicationList.json
-set /a line=3
-FOR /L %%A IN (3,4,200) DO (
+powershell -Command "Get-ChildItem -Path ./Transform\ApplicationList.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '\{\"values\"\:\[') {(Get-Content $_ | ForEach {$_ -replace '\{\"values\"\:\[', ''}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\ApplicationList.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '\]\}') {(Get-Content $_ | ForEach {$_ -replace '\]\}', ''}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\ApplicationList.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '\{\"id\"\:') {(Get-Content $_ | ForEach {$_ -replace '\{\"id\"\:', ''}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\ApplicationList.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '\"name\"\:') {(Get-Content $_ | ForEach {$_ -replace '\"name\"\:', ''}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\ApplicationList.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '\"id\"\:') {(Get-Content $_ | ForEach {$_ -replace '\"id\"\:', ''}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\ApplicationList.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '\}') {(Get-Content $_ | ForEach {$_ -replace '\}', ''}) | Set-Content $_ -encoding UTF8}}"
+set /a line=1
+FOR /L %%A IN (3,4,100) DO (
 call :getid !line!
-set /a line=line+2
+set /a line=line+1
 call :getname !line!
-set /a line=line+2
+set /a line=line+1
 set internalappname=!internalappname:"=!
 set internalname=!internalname:"=!
 if !internalname! == !appname! (set "internalextractedname=!internalappname!")
@@ -203,22 +209,25 @@ echo | set /p=.
 REM Replace all funnel names
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'MyFunnel') {(Get-Content $_ | ForEach {$_ -replace 'MyFunnel', '!funnel!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
+powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'MyCompareFunnel') {(Get-Content $_ | ForEach {$_ -replace 'MyCompareFunnel', '!funnel!'}) | Set-Content $_ -encoding UTF8}}"
+echo | set /p=.
 REM Replace all timeframes
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'MyTime') {(Get-Content $_ | ForEach {$_ -replace 'MyTime', '2'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'MyCompareTime') {(Get-Content $_ | ForEach {$_ -replace 'MyCompareTime', '4'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 REM Replace all appname names
-if !appname! EQU NOAPP (powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern ' where useraction.application=') {(Get-Content $_ | ForEach {$_ -replace ' where useraction.application=', ' where useraction.application<>'}) | Set-Content $_ -encoding UTF8}}")
 echo | set /p=.
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'MyApp') {(Get-Content $_ | ForEach {$_ -replace 'MyApp', '!appname!'}) | Set-Content $_ -encoding UTF8}}"
+echo | set /p=.
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'MyCompareApp') {(Get-Content $_ | ForEach {$_ -replace 'MyCompareApp', '!appname!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 REM Replace promotional marketing names
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'PromHeaderStep') {(Get-Content $_ | ForEach {$_ -replace 'PromHeaderStep', 'No Active'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 REM Replace revenue system property name
-if !revenue! NEQ NOREVENUE (powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'revenueproperty') {(Get-Content $_ | ForEach {$_ -replace 'revenueproperty', '!revenue!'}) | Set-Content $_ -encoding UTF8}}")
+if !revenue! NEQ NOREVENUE (powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'comparerevenueproperty') {(Get-Content $_ | ForEach {$_ -replace 'comparerevenueproperty', '!revenue!'}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'revenueproperty') {(Get-Content $_ | ForEach {$_ -replace 'revenueproperty', '!revenue!'}) | Set-Content $_ -encoding UTF8}}")
 echo | set /p=.
 REM Replace Funnel step names
 if defined f10step (powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22Step10') {(Get-Content $_ | ForEach {$_ -replace '22Step10', '22!f10urlstep!'}) | Set-Content $_ -encoding UTF8}}"
@@ -246,6 +255,8 @@ echo | set /p=.
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepHeader2') {(Get-Content $_ | ForEach {$_ -replace 'StepHeader2', '!f2headerstep!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepHeader3') {(Get-Content $_ | ForEach {$_ -replace 'StepHeader3', '!f3headerstep!'}) | Set-Content $_ -encoding UTF8}}"
+echo | set /p=.
+powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'CompareStep1') {(Get-Content $_ | ForEach {$_ -replace 'CompareStep1', '!f1step!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'Step1') {(Get-Content $_ | ForEach {$_ -replace 'Step1', '!f1step!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
@@ -288,6 +299,7 @@ set lasturlstep=!lasturlstep:/=%%2F!
 echo | set /p=.
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22LastStep') {(Get-Content $_ | ForEach {$_ -replace '22LastStep', '22!lasturlstep!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
+powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'CompareLastStep') {(Get-Content $_ | ForEach {$_ -replace 'CompareLastStep', '!laststep!'}) | Set-Content $_ -encoding UTF8}}"
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'LastStep') {(Get-Content $_ | ForEach {$_ -replace 'LastStep', '!laststep!'}) | Set-Content $_ -encoding UTF8}}"
 echo . 
 echo | set /p=Uploading Dashboards
@@ -315,6 +327,8 @@ echo | set /p=.
 curl -X PUT "https://!tenant!/api/config/v1/dashboards/7f063e1f-e142-44f1-81a0-523f7e5da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\NonEngagedAnalysis!revflag!.json
 echo | set /p=.
 curl -X PUT "https://!tenant!/api/config/v1/dashboards/6e481cc8-bea9-46ba-b1f8-23ebcc1da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\Overview!revflag!.json
+echo | set /p=.
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/6e481cc8-bea9-46ba-b1f8-23ebdd1da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelOverview!revflag!Compare.json
 echo | set /p=.
 if !revenue! NEQ NOREVENUE (curl -X PUT "https://!tenant!/api/config/v1/dashboards/f8c73b94-d5ef-4cbf-bcb8-d866c91da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\RevenueAnalysis.json
 echo | set /p=.
@@ -481,7 +495,7 @@ FOR /f "tokens=%1 delims=:," %%I IN (./Transform/ApplicationList.json) DO IF NOT
 exit /b
 
 :getname
-FOR /f "tokens=%1 delims=:}," %%I IN (./Transform/ApplicationList.json) DO IF NOT DEFINED ver SET "internalname=%%I"
+FOR /f "tokens=%1 delims=:," %%I IN (./Transform/ApplicationList.json) DO IF NOT DEFINED ver SET "internalname=%%I"
 exit /b
 
 

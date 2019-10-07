@@ -38,7 +38,7 @@ REM Replace all owner names
 powershell -Command "Get-ChildItem -Path ./Transform\Marketing*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'MyEmail') {(Get-Content $_ | ForEach {$_ -replace 'MyEmail', '!owner!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 REM Replace all appname names
-powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'MyApp') {(Get-Content $_ | ForEach {$_ -replace 'MyApp', '!appname!'}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\Marketing*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'MyApp') {(Get-Content $_ | ForEach {$_ -replace 'MyApp', '!appname!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 REM Replace promotional marketing names
 powershell -Command "Get-ChildItem -Path ./Transform\Marketing*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'PromHeaderStep') {(Get-Content $_ | ForEach {$_ -replace 'PromHeaderStep', '!campaign!'}) | Set-Content $_ -encoding UTF8}}"
