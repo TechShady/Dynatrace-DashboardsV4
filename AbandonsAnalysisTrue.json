@@ -11,7 +11,7 @@
 		"shared": true,
 		"owner": "MyEmail",
 		"sharingDetails": {
-			"linkShared": false,
+			"linkShared": true,
 			"published": true
 		},
 		"dashboardFilter": {

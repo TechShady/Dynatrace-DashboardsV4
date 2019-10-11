@@ -1216,8 +1216,7 @@
       },
       "customName": "StepHeader1",
       "query": "select userExperienceScore as \"Experience Score\", count(*) as \"Count\" from usersession WHERE useraction.name=\"Step1\" GROUP BY userExperienceScore ORDER BY count(*) DESC",
-      "type": "TABLE",
-      "timeFrameShift": "-2h"
+      "type": "TABLE"
     },
     {
       "name": "Experience",
@@ -1250,8 +1249,7 @@
       },
       "customName": "StepHeader2",
       "query": "select userExperienceScore as \"Experience Score\", count(*) as \"Count\" from usersession WHERE useraction.name=\"Step1\" and useraction.name=\"Step2\" GROUP BY userExperienceScore ORDER BY count(*) DESC",
-      "type": "TABLE",
-      "timeFrameShift": "-2h"
+      "type": "TABLE"
     },
     {
       "name": "DTAQL",
@@ -1269,8 +1267,7 @@
       },
       "customName": "StepHeader3",
       "query": "select userExperienceScore as \"Experience Score\", count(*) as \"Count\" from usersession WHERE useraction.name=\"Step1\" and useraction.name=\"Step2\" and useraction.name=\"Step3\" GROUP BY userExperienceScore ORDER BY count(*) DESC",
-      "type": "TABLE",
-      "timeFrameShift": "-2h"
+      "type": "TABLE"
     },
     {
       "name": "DTAQL",
@@ -1288,8 +1285,7 @@
       },
       "customName": "StepHeader4",
       "query": "select userExperienceScore as \"Experience Score\", count(*) as \"Count\" from usersession WHERE useraction.name=\"Step1\" and useraction.name=\"Step2\" and useraction.name=\"Step3\" and useraction.name=\"Step4\" GROUP BY userExperienceScore ORDER BY count(*) DESC",
-      "type": "TABLE",
-      "timeFrameShift": "-2h"
+      "type": "TABLE"
     },
     {
       "name": "DTAQL",
@@ -1307,8 +1303,7 @@
       },
       "customName": "StepHeader5",
       "query": "select userExperienceScore as \"Experience Score\", count(*) as \"Count\" from usersession WHERE useraction.name=\"Step1\" and useraction.name=\"Step2\" and useraction.name=\"Step3\" and useraction.name=\"Step4\" and useraction.name=\"Step5\" GROUP BY userExperienceScore ORDER BY count(*) DESC",
-      "type": "TABLE",
-      "timeFrameShift": "-2h"
+      "type": "TABLE"
     },
     {
       "name": "DTAQL",
@@ -1326,8 +1321,7 @@
       },
       "customName": "StepHeader6",
       "query": "select userExperienceScore as \"Experience Score\", count(*) as \"Count\" from usersession WHERE useraction.name=\"Step1\" and useraction.name=\"Step2\" and useraction.name=\"Step3\" and useraction.name=\"Step4\" and useraction.name=\"Step5\" and useraction.name=\"Step6\" GROUP BY userExperienceScore ORDER BY count(*) DESC",
-      "type": "TABLE",
-      "timeFrameShift": "-2h"
+      "type": "TABLE"
     },
     {
       "name": "DTAQL",
@@ -1345,8 +1339,7 @@
       },
       "customName": "StepHeader7",
       "query": "select userExperienceScore as \"Experience Score\", count(*) as \"Count\" from usersession WHERE useraction.name=\"Step1\" and useraction.name=\"Step2\" and useraction.name=\"Step3\" and useraction.name=\"Step4\" and useraction.name=\"Step5\" and useraction.name=\"Step6\" and useraction.name=\"Step7\" GROUP BY userExperienceScore ORDER BY count(*) DESC",
-      "type": "TABLE",
-      "timeFrameShift": "-2h"
+      "type": "TABLE"
     },
     {
       "name": "DTAQL",
@@ -1364,8 +1357,7 @@
       },
       "customName": "StepHeader8",
       "query": "select userExperienceScore as \"Experience Score\", count(*) as \"Count\" from usersession WHERE useraction.name=\"Step1\" and useraction.name=\"Step2\" and useraction.name=\"Step3\" and useraction.name=\"Step4\" and useraction.name=\"Step5\" and useraction.name=\"Step6\" and useraction.name=\"Step7\" and useraction.name=\"Step8\" GROUP BY userExperienceScore ORDER BY count(*) DESC",
-      "type": "TABLE",
-      "timeFrameShift": "-2h"
+      "type": "TABLE"
     },
     {
       "name": "DTAQL",
@@ -1383,8 +1375,7 @@
       },
       "customName": "StepHeader9",
       "query": "select userExperienceScore as \"Experience Score\", count(*) as \"Count\" from usersession WHERE useraction.name=\"Step1\" and useraction.name=\"Step2\" and useraction.name=\"Step3\" and useraction.name=\"Step4\" and useraction.name=\"Step5\" and useraction.name=\"Step6\" and useraction.name=\"Step7\" and useraction.name=\"Step8\" and useraction.name=\"Step9\" GROUP BY userExperienceScore ORDER BY count(*) DESC",
-      "type": "TABLE",
-      "timeFrameShift": "-2h"
+      "type": "TABLE"
     },
     {
       "name": "DTAQL",
@@ -1402,8 +1393,7 @@
       },
       "customName": "StepHeader10",
       "query": "select userExperienceScore as \"Experience Score\", count(*) as \"Count\" from usersession WHERE useraction.name=\"Step1\" and useraction.name=\"Step2\" and useraction.name=\"Step3\" and useraction.name=\"Step4\" and useraction.name=\"Step5\" and useraction.name=\"Step6\" and useraction.name=\"Step7\" and useraction.name=\"Step8\" and useraction.name=\"Step9\" and useraction.name=\"Step10\" GROUP BY userExperienceScore ORDER BY count(*) DESC",
-      "type": "TABLE",
-      "timeFrameShift": "-2h"
+      "type": "TABLE"
     },
     {
       "name": "DTAQL",
@@ -1421,8 +1411,7 @@
       },
       "customName": "StepHeader11",
       "query": "select userExperienceScore as \"Experience Score\", count(*) as \"Count\" from usersession WHERE useraction.name=\"Step1\" and useraction.name=\"Step2\" and useraction.name=\"Step3\" and useraction.name=\"Step4\" and useraction.name=\"Step5\" and useraction.name=\"Step6\" and useraction.name=\"Step7\" and useraction.name=\"Step8\" and useraction.name=\"Step9\" and useraction.name=\"Step10\" and useraction.name=\"Step11\" GROUP BY userExperienceScore ORDER BY count(*) DESC",
-      "type": "TABLE",
-      "timeFrameShift": "-2h"
+      "type": "TABLE"
     },
     {
       "name": "DTAQL",
@@ -1440,8 +1429,7 @@
       },
       "customName": "StepHeader12",
       "query": "select userExperienceScore as \"Experience Score\", count(*) as \"Count\" from usersession WHERE useraction.name=\"Step1\" and useraction.name=\"Step2\" and useraction.name=\"Step3\" and useraction.name=\"Step4\" and useraction.name=\"Step5\" and useraction.name=\"Step6\" and useraction.name=\"Step7\" and useraction.name=\"Step8\" and useraction.name=\"Step9\" and useraction.name=\"Step10\" and useraction.name=\"Step11\" and useraction.name=\"Step12\" GROUP BY userExperienceScore ORDER BY count(*) DESC",
-      "type": "TABLE",
-      "timeFrameShift": "-2h"
+      "type": "TABLE"
     }
   ]
 }
