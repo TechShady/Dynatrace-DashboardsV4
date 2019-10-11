@@ -22,6 +22,7 @@ curl -X PUT "https://!tenant!/api/config/v1/dashboards/fbe8d3b1-ccb9-480c-9e5d-0
 REM Upload Key Store Dashboard
 curl -X PUT "https://%tenant%/api/config/v1/dashboards/d4db8e38-000f-42df-85a9-d491d34da000" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\KeyStore.json
 echo .
-echo *********                             *********
-echo ********* Welcome to Dynatrace BizOps *********
-echo *********                             *********
+echo *********                                                 *********
+echo ********* Welcome to Dynatrace Digital Business Analytics *********
+echo *********              The Power of Answers               *********
+echo *********                                                 *********

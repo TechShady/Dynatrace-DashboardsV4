@@ -16,16 +16,32 @@ set "dashboardkey=%2"
 if not defined dashboardkey set /p dashboardkey="Enter Dashboard Key: "
 set "overviewkey=%3"
 if not defined overviewkey set /p overviewkey="Enter Overview Dashboard Key: "
-if exist ./\%dashboardkey%.cfg (
-for /f "tokens=*" %%a in (./\%dashboardkey%.cfg) do (
+if exist ./\%overviewkey%.cfg (
+for /f "tokens=*" %%a in (./\%overviewkey%.cfg) do (
     set /a "line = line + 1"
     if !line!==1 set tenant=%%a
     if !line!==2 set owner=%%a
-    if !line!==3 set appname=%%a
-    if !line!==4 set campaign=%%a
+    if !line!==4 set appname=%%a
     if !line!==5 set revenue=%%a
-    if !line!==6 set promstep=%%a
-    if !line!==7 set laststep=%%a
+    if !line!==10 set laststep=%%a
+    if !line!==12 set laststep=%%a
+    if !line!==14 set laststep=%%a
+    if !line!==16 set laststep=%%a
+    if !line!==18 set laststep=%%a
+    if !line!==20 set laststep=%%a
+    if !line!==22 set laststep=%%a
+    if !line!==24 set laststep=%%a
+    if !line!==26 set laststep=%%a
+    if !line!==28 set laststep=%%a
+)
+)
+set /a "line = 0"
+if exist ./\%dashboardkey%.cfg (
+for /f "tokens=*" %%a in (./\%dashboardkey%.cfg) do (
+    set /a "line = line + 1"
+    if !line!==1 set campaign=%%a
+    if !line!==2 set promstep=%%a
+)
 )
 if !revenue! == NOREVENUE (set "revflag=False")
 set promstep=!promstep:"=\\""\\""""!
@@ -62,13 +78,7 @@ echo | set /p=.
 if !revenue! EQU NOREVENUE (curl -X PUT "https://!tenant!/api/config/v1/dashboards/934b0dce-bbf4-443d-b0f0-e370faeda%overviewkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\MarketingOverview1False.json
 echo | set /p=.
 curl -X PUT "https://!tenant!/api/config/v1/dashboards/935b0dce-bbf4-443d-b0f0-e370faeda%overviewkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\MarketingOverview2False.json)
-REM Get Key Store Dashboard
 echo .
-curl -X GET "https://!tenant!/api/config/v1/dashboards/d4db8e38-000f-42df-85a9-d491d34da000" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" > ./Transform/KeyStore.json
-REM Update Key Store Dashboard
-powershell -Command "Get-ChildItem -Path ./Transform/KeyStore.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '##  ') {(Get-Content $_ | ForEach {$_ -replace '##  ', '## %dashboardkey% !campaign! Campaign Added to %overviewkey%\n##  '}) | Set-Content $_ -encoding UTF8}}"
-REM Upload Key Store Dashboard
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/d4db8e38-000f-42df-85a9-d491d34da000" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\KeyStore.json
 echo *********                             *********
 echo ********* Marketing Campaign Deployed *********
 echo *********                             *********
