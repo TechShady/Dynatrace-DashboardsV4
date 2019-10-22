@@ -8,7 +8,8 @@
   
 ## What is Digital Business Analytics?
 
-TBD…
+Real-time, AI-powered business insights using data from Dynatrace’s digital experience and application performance monitoring
+
 
 ## How do I deploy the dashboards?
 
@@ -37,7 +38,7 @@ TBD…
 8.	Run ```DeployTenant.bat``` and pass in the following parameters
   * Token
   * 3-digit prefix you used to create the cfg
-9.	For example, ```DeployTenant.bat 858585dhdh8 313```
+9.	For example, ```DeployTenant.bat 858585dhdh8 313```<br>
 This will create a **Tenant Overview Dashboard, App Overview Dashboard, Funnel Overview Dashboard and many Funnel related Dashboards**. This step will also create a **Key Store Dashboard** that logged the TenantDeploy and all future deployments. This Dashboard can be accessed from the Tenant Overview Dashboard. This info is needed for future updates and keeps track of the 3-digit “keys” used in deployments.
  
 ## How do I deploy a second app to a tenant?
@@ -49,7 +50,7 @@ This will create a **Tenant Overview Dashboard, App Overview Dashboard, Funnel O
   b.	3-digit prefix you used to create the cfg file for the app
   c.	3-digit prefix you used in DeployTenant
   d.	Position number for App Overview link (2-11)
-4.	For example, ```DeployApplication.bat 858585dhdh8 734 313 2```
+4.	For example, ```DeployApplication.bat 858585dhdh8 734 313 2```<br>
 This will create an App Overview Dashboard and link it to the Tenant Overview Dashboard. It will also create a Funnel Overview Dashboard and many Funnel related Dashboards. It will also update the Key Store for the App deployment.
 
 ## How do I deploy a second funnel to an app?
@@ -61,7 +62,7 @@ This will create an App Overview Dashboard and link it to the Tenant Overview Da
   *	3-digit prefix you used to create the cfg file for the funnel
   *	3-digit prefix you used in DeployApplication
   *	Position number for Funnel Overview link (2-11)
-4.	For example, ```DeployFunnel.bat 858585dhdh8 808 734 2```
+4.	For example, ```DeployFunnel.bat 858585dhdh8 808 734 2```<br>
 This will create a Funnel Overview Dashboard and link it to the Application Overview Dashboard. It will also create many Funnel related Dashboards. It will also update the Key Store for the Funnel deployment
 
 ## How do I change the time filters in the Comparison Dashboards?
@@ -70,7 +71,7 @@ This will create a Funnel Overview Dashboard and link it to the Application Over
 2.	Run ```UpdateTimeCompareDashboards.bat``` and pass in the following parameters
   *	Token
   *	3-digit prefix you used in DeployTenant/DeployApplication/DeployFunnel
-  *	Compare hours (i.e. 12)
+  *	Compare hours (i.e. 12)<br>
 This will update the Compare Dashboards for the Tenant/App/Funnel with a time filter of X in the upper half and X*2 in the bottom half of the Compare Dashboards. My example will filter the top tiles for last 12 hours and the bottom tiles with the previous 12 hours.
 
 ## How do I change the application name in the Comparison Dashboards so the top half shows one app and the bottom half shows a different app (i.e. A/B testing?
@@ -78,7 +79,7 @@ This will update the Compare Dashboards for the Tenant/App/Funnel with a time fi
 2.	Run ```UpdateAppCompareDashboards.bat``` and pass in the following parameters
   *	Token
   *	3-digit prefix you used in DeployTenant/DeployApplication/DeployFunnel for the primary app (top half of dashboard)
-  *	3-digit prefix you used in DeployTenant/DeployApplication/DeployFunnel for the secondary app (bottom half of dashboard)
+  *	3-digit prefix you used in DeployTenant/DeployApplication/DeployFunnel for the secondary app (bottom half of dashboard)<br>
 This will update the Compare Dashboards for the Tenant/App/Funnel with a time filter of X in the upper half and X*2 in the bottom half of the Compare Dashboards. My example will filter the top tiles for last 12 hours and the bottom tiles with the previous 12 hours.
 
 ## How do I integrate a Custom Dashboard into the Tenant Overview Dashboard?
@@ -92,5 +93,5 @@ This will update the Compare Dashboards for the Tenant/App/Funnel with a time fi
   *	Token
   *	3-digit prefix you used to creatre the cfg file for the Custom Dashboard
   *	3-digit prefix you used in DeployTenant
-  *	Position number for Funnel Overview link (2-11)
+  *	Position number for Funnel Overview link (2-11)<br>
 This will update the Tenant Overview Dashboards with a link to the Custom Dashboard.
