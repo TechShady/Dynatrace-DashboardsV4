@@ -80,3 +80,17 @@ This will update the Compare Dashboards for the Tenant/App/Funnel with a time fi
   *	3-digit prefix you used in DeployTenant/DeployApplication/DeployFunnel for the primary app (top half of dashboard)
   *	3-digit prefix you used in DeployTenant/DeployApplication/DeployFunnel for the secondary app (bottom half of dashboard)
 This will update the Compare Dashboards for the Tenant/App/Funnel with a time filter of X in the upper half and X*2 in the bottom half of the Compare Dashboards. My example will filter the top tiles for last 12 hours and the bottom tiles with the previous 12 hours.
+
+## How do I integrate a Custom Dashboard into the Tenant Overview Dashboard?
+
+1.  Create a cfg file with a 3-digit prefix (i.e. 313.cfg)
+2.	Example:
+  	Capacity Management
+    ee73d6a8-6b19-4865-8c04-7176d1b9013d
+3.	The cfg file contains the following fields (Dashboard Name, Dashboard ID)
+4.  Run ```UpdloadCustom.bat``` and pass in the following parameters
+  *	Token
+  *	3-digit prefix you used to creatre the cfg file for the Custom Dashboard
+  *	3-digit prefix you used in DeployTenant
+  *	Position number for Funnel Overview link (2-11)
+This will update the Tenant Overview Dashboards with a link to the Custom Dashboard.
