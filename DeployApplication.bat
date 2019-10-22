@@ -192,6 +192,7 @@ set internalappname=!internalappname:"=!
 set internalname=!internalname:"=!
 if !internalname! == !appname! (set "internalextractedname=!internalappname!")
 )
+if not defined internalextractedname set /p internalextractedname="Couldn't find the Internal App ID. Please enter App ID (i.e. APPLICATION-12B20G6C9E1E27D8): "
 echo | set /p=Transforming Dashboards
 REM Replace all internal app names
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'InternalAppID') {(Get-Content $_ | ForEach {$_ -replace 'InternalAppID', '!internalextractedname!'}) | Set-Content $_ -encoding UTF8}}"
