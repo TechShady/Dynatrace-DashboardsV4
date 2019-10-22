@@ -8,8 +8,7 @@
   
 ## What is Digital Business Analytics?
 
-Real-time, AI-powered business insights using data from Dynatrace’s digital experience and application performance monitoring
-
+![Digital Business Analytics](Images/DBA.png)
 
 ## How do I deploy the dashboards?
 
