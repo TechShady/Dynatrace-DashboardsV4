@@ -5,6 +5,7 @@ set "tenant="
 set "owner="
 set "funnel="
 set "appname="
+set "appurlname="
 set "internalappname="
 set "internalname="
 set "internalextractedname="
@@ -192,6 +193,9 @@ set internalappname=!internalappname:"=!
 set internalname=!internalname:"=!
 if !internalname! == !appname! (set "internalextractedname=!internalappname!")
 )
+set appurlname=!appname: =%%20!
+echo !appurlname!
+echo !internalextractedname!
 if not defined internalextractedname set /p internalextractedname="Couldn't find the Internal App ID. Please enter App ID (i.e. APPLICATION-12B20G6C9E1E27D8): "
 echo | set /p=Transforming Dashboards
 REM Replace all internal app names
@@ -219,6 +223,7 @@ powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {
 echo | set /p=.
 REM Replace all appname names
 echo | set /p=.
+powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'MyURLApp') {(Get-Content $_ | ForEach {$_ -replace 'MyURLApp', '!appurlname!'}) | Set-Content $_ -encoding UTF8}}"
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'MyApp') {(Get-Content $_ | ForEach {$_ -replace 'MyApp', '!appname!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'MyCompareApp') {(Get-Content $_ | ForEach {$_ -replace 'MyCompareApp', '!appname!'}) | Set-Content $_ -encoding UTF8}}"

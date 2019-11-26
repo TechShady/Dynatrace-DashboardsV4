@@ -6,6 +6,7 @@ set "tenant="
 set "owner="
 set "funnel="
 set "appname="
+set "appurlname="
 set "revflag=True"
 set "revenue="
 set "laststep="
@@ -172,6 +173,7 @@ set f12urlstep=!f12urlstep:"=\\""\\""""!
     if !line!==29 set f12headerstep=%%a
 )
 if !revenue! == NOREVENUE (set "revflag=False")
+set appurlname=!appname: =%%20!
 set /a "stepcount = (line - 5)/2"
 set laststep=!laststep:"=\\""\\""""!
 echo | set/p=Transforming Dashboards...
@@ -194,6 +196,7 @@ echo | set /p=.
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'MyCompareTime') {(Get-Content $_ | ForEach {$_ -replace 'MyCompareTime', '4'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 REM Replace all appname names
+powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'MyURLApp') {(Get-Content $_ | ForEach {$_ -replace 'MyURLApp', '!appurlname!'}) | Set-Content $_ -encoding UTF8}}"
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'MyApp') {(Get-Content $_ | ForEach {$_ -replace 'MyApp', '!appname!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 REM Replace promotional marketing names
