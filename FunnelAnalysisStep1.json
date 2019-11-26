@@ -35,7 +35,7 @@
 				"managementZone": null
 			},
 			"customName": "Continue",
-			"query": "select  count(usersessionid) as \"Requests\" FROM usersession where useraction.name = \"Step1\"  and useraction.name=\"Step2\"",
+			"query": "select  count(usersessionid) as \"Requests\" FROM usersession where useraction.application=\"MyApp\" and  useraction.name = \"Step1\"  and useraction.name=\"Step2\"",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		},
 		{
@@ -53,7 +53,7 @@
 				"managementZone": null
 			},
 			"customName": "Exit",
-			"query": "select  count(usersessionid) as \"Requests\" FROM usersession where useraction.name = \"Step1\"  and useraction.name!=\"Step2\"",
+			"query": "select  count(usersessionid) as \"Requests\" FROM usersession where useraction.application=\"MyApp\" and  useraction.name = \"Step1\"  and useraction.name!=\"Step2\"",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		},
 		{
@@ -71,7 +71,7 @@
 				"managementZone": null
 			},
 			"customName": "StepHeader1",
-			"query": "select count(usersessionid) as \"Requests\" FROM usersession where useraction.name = \"Step1\" ",
+			"query": "select count(usersessionid) as \"Requests\" FROM usersession where useraction.application=\"MyApp\" and  useraction.name = \"Step1\" ",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		},
 		{
@@ -88,7 +88,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [StepHeader1](https://MyTenant/ui/user-sessions/query?sessionquery=select%20UserId%20as%20%22User%22,%20duration%20as%20%22Funnel%20Duration%22%20FROM%20usersession%20where%20useraction.name%20%3D%20%22Step1%22%20order%20by%20duration%20desc&visualization=TABLE)"
+			"markdown": "## [StepHeader1](https://MyTenant/ui/user-sessions/query?sessionquery=select%20UserId%20as%20%22User%22,%20duration%20as%20%22Funnel%20Duration%22%20FROM%20usersession%20where%20useraction.application%20%3D%20%22MyURLApp%22%20and%20useraction.name%20%3D%20%22Step1%22%20order%20by%20duration%20desc&visualization=TABLE)"
 		},
 		{
 			"name": "Markdown",
@@ -104,7 +104,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [Continue](https://MyTenant/ui/user-sessions/query?sessionquery=select%20UserId%20as%20%22User%22,%20duration%20as%20%22Funnel%20Duration%22%20FROM%20usersession%20where%20useraction.name%20%3D%20%22Step1%22%20%20and%20useraction.name%3D%22Step2%22%20order%20by%20duration%20desc&visualization=TABLE)"
+			"markdown": "## [Continue](https://MyTenant/ui/user-sessions/query?sessionquery=select%20UserId%20as%20%22User%22,%20duration%20as%20%22Funnel%20Duration%22%20FROM%20usersession%20where%20useraction.application%20%3D%20%22MyURLApp%22%20and%20useraction.name%20%3D%20%22Step1%22%20%20and%20useraction.name%3D%22Step2%22%20order%20by%20duration%20desc&visualization=TABLE)"
 		},
 		{
 			"name": "Markdown",
@@ -120,7 +120,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [Exit](https://MyTenant/ui/user-sessions/query?sessionquery=select%20UserId%20as%20%22User%22,%20duration%20as%20%22Funnel%20Duration%22%20FROM%20usersession%20where%20useraction.name%20%3D%20%22Step1%22%20%20and%20useraction.name!%3D%22Step2%22%20order%20by%20duration%20desc&visualization=TABLE)"
+			"markdown": "## [Exit](https://MyTenant/ui/user-sessions/query?sessionquery=select%20UserId%20as%20%22User%22,%20duration%20as%20%22Funnel%20Duration%22%20FROM%20usersession%20where%20useraction.application%20%3D%20%22MyURLApp%22%20and%20useraction.name%20%3D%20%22Step1%22%20%20and%20useraction.name!%3D%22Step2%22%20order%20by%20duration%20desc&visualization=TABLE)"
 		},
 		{
 			"name": "DTAQL",
@@ -137,7 +137,7 @@
 				"managementZone": null
 			},
 			"customName": "\u23f1",
-			"query": "select AVG(useraction.duration) as \"Duration\" from usersession where useraction.name=\"Step1\"",
+			"query": "select AVG(useraction.duration) as \"Duration\" from usersession where useraction.application=\"MyApp\" and  useraction.name=\"Step1\"",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		},
 		{
@@ -155,7 +155,7 @@
 				"managementZone": null
 			},
 			"customName": "\u23f1",
-			"query": "select AVG(useraction.duration) as \"Duration\" from usersession where useraction.name=\"Step1\" and useraction.name=\"Step2\"",
+			"query": "select AVG(useraction.duration) as \"Duration\" from usersession where useraction.application=\"MyApp\" and  useraction.name=\"Step1\" and useraction.name=\"Step2\"",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		},
 		{
@@ -173,7 +173,7 @@
 				"managementZone": null
 			},
 			"customName": "\u23f1",
-			"query": "select AVG(useraction.duration) as \"Duration\" from usersession where useraction.name=\"Step1\" and useraction.name!=\"Step2\"",
+			"query": "select AVG(useraction.duration) as \"Duration\" from usersession where useraction.application=\"MyApp\" and  useraction.name=\"Step1\" and useraction.name!=\"Step2\"",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		},
 		{
@@ -190,7 +190,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [Continue Duration](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid,%20useraction.duration%20as%20%22Funnel%20Click%20Path%20Duration%22%20from%20usersession%20where%20useraction.name%3D%22Step1%22%20and%20useraction.name%3D%22Step2%22%20order%20by%20useraction.duration%20desc&visualization=TABLE)"
+			"markdown": "## [Continue Duration](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid,%20useraction.duration%20as%20%22Funnel%20Click%20Path%20Duration%22%20from%20usersession%20where%20useraction.application%20%3D%20%22MyURLApp%22%20and%20useraction.name%3D%22Step1%22%20and%20useraction.name%3D%22Step2%22%20order%20by%20useraction.duration%20desc&visualization=TABLE)"
 		},
 		{
 			"name": "Markdown",
@@ -206,7 +206,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [Exit Duration](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid,%20useraction.duration%20as%20%22Funnel%20Click%20Path%20Duration%22%20from%20usersession%20where%20useraction.name%3D%22Step1%22%20and%20useraction.name!%3D%22Step2%22%20order%20by%20useraction.duration%20desc&visualization=TABLE)"
+			"markdown": "## [Exit Duration](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid,%20useraction.duration%20as%20%22Funnel%20Click%20Path%20Duration%22%20from%20usersession%20where%20useraction.application%20%3D%20%22MyURLApp%22%20and%20useraction.name%3D%22Step1%22%20and%20useraction.name!%3D%22Step2%22%20order%20by%20useraction.duration%20desc&visualization=TABLE)"
 		},
 		{
 			"name": "Markdown",
@@ -222,7 +222,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [Duration](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid,%20useraction.duration%20as%20%22Funnel%20Click%20Path%20Duration%22%20from%20usersession%20where%20useraction.name%3D%22Step1%22%20order%20by%20useraction.duration%20desc&visualization=TABLE)"
+			"markdown": "## [Duration](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid,%20useraction.duration%20as%20%22Funnel%20Click%20Path%20Duration%22%20from%20usersession%20where%20useraction.application%20%3D%20%22MyURLApp%22%20and%20useraction.name%3D%22Step1%22%20order%20by%20useraction.duration%20desc&visualization=TABLE)"
 		},
 		{
 			"name": "DTAQL",
@@ -239,7 +239,7 @@
 				"managementZone": null
 			},
 			"customName": "\ud83d\ude12",
-			"query": "select sum(usersession.totalErrorCount) as \"Errors\" from usersession where useraction.name=\"Step1\"",
+			"query": "select sum(usersession.totalErrorCount) as \"Errors\" from usersession where useraction.application=\"MyApp\" and  useraction.name=\"Step1\"",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		},
 		{
@@ -257,7 +257,7 @@
 				"managementZone": null
 			},
 			"customName": "\ud83d\ude12",
-			"query": "select sum(usersession.totalErrorCount) as \"Errors\" from usersession where useraction.name=\"Step1\" and useraction.name=\"Step2\"",
+			"query": "select sum(usersession.totalErrorCount) as \"Errors\" from usersession where useraction.application=\"MyApp\" and  useraction.name=\"Step1\" and useraction.name=\"Step2\"",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		},
 		{
@@ -275,7 +275,7 @@
 				"managementZone": null
 			},
 			"customName": "\ud83d\ude12",
-			"query": "select sum(usersession.totalErrorCount) as \"Errors\" from usersession where useraction.name=\"Step1\" and useraction.name!=\"Step2\"",
+			"query": "select sum(usersession.totalErrorCount) as \"Errors\" from usersession where useraction.application=\"MyApp\" and  useraction.name=\"Step1\" and useraction.name!=\"Step2\"",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		},
 		{
@@ -292,7 +292,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [Continue Errors](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid,%20totalErrorCount%20as%20%22Errors%22%20from%20usersession%20where%20useraction.name%3D%22Step1%22%20and%20useraction.name%3D%22Step2%22%20and%20totalErrorCount%3E0%20order%20by%20totalErrorCount%20desc&visualization=TABLE)"
+			"markdown": "## [Continue Errors](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid,%20totalErrorCount%20as%20%22Errors%22%20from%20usersession%20where%20useraction.application%20%3D%20%22MyURLApp%22%20and%20useraction.name%3D%22Step1%22%20and%20useraction.name%3D%22Step2%22%20and%20totalErrorCount%3E0%20order%20by%20totalErrorCount%20desc&visualization=TABLE)"
 		},
 		{
 			"name": "Markdown",
@@ -308,7 +308,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [Exit Errors](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid,%20totalErrorCount%20as%20%22Errors%22%20from%20usersession%20where%20useraction.name%3D%22Step1%22%20and%20useraction.name!%3D%22Step2%22%20and%20totalErrorCount%3E0%20order%20by%20totalErrorCount%20DESC&visualization=TABLE)"
+			"markdown": "## [Exit Errors](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid,%20totalErrorCount%20as%20%22Errors%22%20from%20usersession%20where%20useraction.application%20%3D%20%22MyURLApp%22%20and%20useraction.name%3D%22Step1%22%20and%20useraction.name!%3D%22Step2%22%20and%20totalErrorCount%3E0%20order%20by%20totalErrorCount%20DESC&visualization=TABLE)"
 		},
 		{
 			"name": "Markdown",
@@ -324,7 +324,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [Errors](https://MyTenant/ui/user-sessions/query?sessionquery=select%20UserId%20as%20%22User%22,%20totalErrorCount%20as%20%22Funnel%20Click%20Path%20Errors%22%20FROM%20usersession%20where%20useraction.name%20%3D%20%22Step1%22%20order%20by%20totalErrorCount%20desc&visualization=TABLE)"
+			"markdown": "## [Errors](https://MyTenant/ui/user-sessions/query?sessionquery=select%20UserId%20as%20%22User%22,%20totalErrorCount%20as%20%22Funnel%20Click%20Path%20Errors%22%20FROM%20usersession%20where%20useraction.application%20%3D%20%22MyURLApp%22%20and%20useraction.name%20%3D%20%22Step1%22%20order%20by%20totalErrorCount%20desc&visualization=TABLE)"
 		},
 		{
 			"name": "DTAQL",
@@ -341,7 +341,7 @@
 				"managementZone": null
 			},
 			"customName": "\ud83d\udc0c",
-			"query": "select count(usersessionid) as \"Sessions\" from usersession where usersession.duration>180000 and useraction.name =\"Step1\" and userActionCount<10",
+			"query": "select count(usersessionid) as \"Sessions\" from usersession where useraction.application=\"MyApp\" and  usersession.duration>180000 and useraction.name =\"Step1\" and userActionCount<10",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		},
 		{
@@ -358,7 +358,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [Continue NonEngaged](https://MyTenant/ui/user-sessions/query?sessionquerytileconfigid=55885bfd-7d70-450d-b0a6-8570fe60dd00&sessionquery=select%20userid%20from%20usersession%20WHERE%20usersession.duration%3E180000%20and%20useraction.name%20%3D%22Step1%22%20and%20useraction.name%20%3D%22Step2%22%20and%20userActionCount%3C10&visualization=TABLE)"
+			"markdown": "## [Continue NonEngaged](https://MyTenant/ui/user-sessions/query?sessionquerytileconfigid=55885bfd-7d70-450d-b0a6-8570fe60dd00&sessionquery=select%20userid%20from%20usersession%20where%20useraction.application%20%3D%20%22MyURLApp%22%20and%20usersession.duration%3E180000%20and%20useraction.name%20%3D%22Step1%22%20and%20useraction.name%20%3D%22Step2%22%20and%20userActionCount%3C10&visualization=TABLE)"
 		},
 		{
 			"name": "Markdown",
@@ -374,7 +374,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [Exit NonEngaged](https://MyTenant/ui/user-sessions/query?sessionquerytileconfigid=dd66617c-b601-44f6-982c-a871cc80b8a0&sessionquery=select%20userid%20from%20usersession%20WHERE%20usersession.duration%3E180000%20and%20useraction.name%20%3D%22Step1%22%20and%20useraction.name%20!%3D%22Step2%22%20and%20userActionCount%3C10&visualization=TABLE)"
+			"markdown": "## [Exit NonEngaged](https://MyTenant/ui/user-sessions/query?sessionquerytileconfigid=dd66617c-b601-44f6-982c-a871cc80b8a0&sessionquery=select%20userid%20from%20usersession%20where%20useraction.application%20%3D%20%22MyURLApp%22%20and%20usersession.duration%3E180000%20and%20useraction.name%20%3D%22Step1%22%20and%20useraction.name%20!%3D%22Step2%22%20and%20userActionCount%3C10&visualization=TABLE)"
 		},
 		{
 			"name": "Markdown",
@@ -390,7 +390,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [NonEngaged](https://MyTenant/ui/user-sessions/query?sessionquerytileconfigid=c4518621-1c74-46a3-9a81-2239272ec607&sessionquery=select%20userid%20from%20usersession%20WHERE%20usersession.duration%3E180000%20and%20useraction.name%20%3D%22Step1%22%20and%20userActionCount%3C10&visualization=TABLE)"
+			"markdown": "## [NonEngaged](https://MyTenant/ui/user-sessions/query?sessionquerytileconfigid=c4518621-1c74-46a3-9a81-2239272ec607&sessionquery=select%20userid%20from%20usersession%20where%20useraction.application%20%3D%20%22MyURLApp%22%20and%20usersession.duration%3E180000%20and%20useraction.name%20%3D%22Step1%22%20and%20userActionCount%3C10&visualization=TABLE)"
 		},
 		{
 			"name": "DTAQL",
@@ -407,7 +407,7 @@
 				"managementZone": null
 			},
 			"customName": "\uD83D\uDE21",
-			"query": "select sum(numberOfRageClicks) as \"Rages\" from usersession where  numberOfRageClicks>0 and useraction.name=\"Step1\"",
+			"query": "select sum(numberOfRageClicks) as \"Rages\" from usersession where useraction.application=\"MyApp\" and   numberOfRageClicks>0 and useraction.name=\"Step1\"",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		},
 		{
@@ -424,7 +424,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [Continue Rage](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid,%20numberOfRageClicks%20as%20%22Rages%22%20from%20usersession%20where%20%20numberOfRageClicks%3E0%20and%20useraction.name%3D%22Step1%22%20and%20useraction.name%3D%22Step2%22&visualization=TABLE)"
+			"markdown": "## [Continue Rage](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid,%20numberOfRageClicks%20as%20%22Rages%22%20from%20usersession%20where%20useraction.application%20%3D%20%22MyURLApp%22%20and%20%20numberOfRageClicks%3E0%20and%20useraction.name%3D%22Step1%22%20and%20useraction.name%3D%22Step2%22&visualization=TABLE)"
 		},
 		{
 			"name": "Markdown",
@@ -440,7 +440,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [Exit Rage](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid,%20numberOfRageClicks%20as%20%22Rages%22%20from%20usersession%20where%20%20numberOfRageClicks%3E0%20and%20useraction.name%3D%22Step1%22%20and%20useraction.name!%3D%22Step2%22&visualization=TABLE)"
+			"markdown": "## [Exit Rage](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid,%20numberOfRageClicks%20as%20%22Rages%22%20from%20usersession%20where%20useraction.application%20%3D%20%22MyURLApp%22%20and%20%20numberOfRageClicks%3E0%20and%20useraction.name%3D%22Step1%22%20and%20useraction.name!%3D%22Step2%22&visualization=TABLE)"
 		},
 		{
 			"name": "Markdown",
@@ -473,7 +473,7 @@
 				"managementZone": null
 			},
 			"customName": "\uD83D\uDE21",
-			"query": "select sum(numberOfRageClicks) as \"Rages\" from usersession where  numberOfRageClicks>0 and useraction.name=\"Step1\" and useraction.name=\"Step2\"",
+			"query": "select sum(numberOfRageClicks) as \"Rages\" from usersession where useraction.application=\"MyApp\" and   numberOfRageClicks>0 and useraction.name=\"Step1\" and useraction.name=\"Step2\"",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		},
 		{
@@ -491,7 +491,7 @@
 				"managementZone": null
 			},
 			"customName": "\uD83D\uDE21",
-			"query": "select sum(numberOfRageClicks) as \"Rages\" from usersession where  numberOfRageClicks>0 and useraction.name=\"Step1\" and useraction.name!=\"Step2\"",
+			"query": "select sum(numberOfRageClicks) as \"Rages\" from usersession where useraction.application=\"MyApp\" and   numberOfRageClicks>0 and useraction.name=\"Step1\" and useraction.name!=\"Step2\"",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		},
 		{
@@ -509,7 +509,7 @@
 				"managementZone": null
 			},
 			"customName": "\ud83d\udc0c",
-			"query": "select count(usersessionid) as \"Sessions\" from usersession where usersession.duration>180000 and useraction.name =\"Step1\" and useraction.name =\"Step2\" and userActionCount<10",
+			"query": "select count(usersessionid) as \"Sessions\" from usersession where useraction.application=\"MyApp\" and  usersession.duration>180000 and useraction.name =\"Step1\" and useraction.name =\"Step2\" and userActionCount<10",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		},
 		{
@@ -527,7 +527,7 @@
 				"managementZone": null
 			},
 			"customName": "\ud83d\udc0c",
-			"query": "select count(usersessionid) as \"Sessions\" from usersession where usersession.duration>180000 and useraction.name =\"Step1\" and useraction.name !=\"Step2\" and userActionCount<10",
+			"query": "select count(usersessionid) as \"Sessions\" from usersession where useraction.application=\"MyApp\" and  usersession.duration>180000 and useraction.name =\"Step1\" and useraction.name !=\"Step2\" and userActionCount<10",
 			"type": "SINGLE_VALUE", "timeFrameShift": "-2h"
 		},
 		{
@@ -544,7 +544,7 @@
 				"timeframe": null,
 				"managementZone": null
 			},
-			"markdown": "## [Rage](https://MyTenant/ui/user-sessions/query?sessionquerytileconfigid=26ef21fb-156b-42f0-8220-9fd9becddb2a&sessionquery=select%20userid,%20numberOfRageClicks%20as%20%22Rages%22%20from%20usersession%20where%20%20numberOfRageClicks%3E0%20and%20useraction.name%3D%22Step1%22&visualization=TABLE)"
+			"markdown": "## [Rage](https://MyTenant/ui/user-sessions/query?sessionquerytileconfigid=26ef21fb-156b-42f0-8220-9fd9becddb2a&sessionquery=select%20userid,%20numberOfRageClicks%20as%20%22Rages%22%20from%20usersession%20where%20useraction.application%20%3D%20%22MyURLApp%22%20and%20%20numberOfRageClicks%3E0%20and%20useraction.name%3D%22Step1%22&visualization=TABLE)"
 		}
 	]
 }

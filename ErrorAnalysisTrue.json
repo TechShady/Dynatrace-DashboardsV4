@@ -492,7 +492,7 @@
 				"managementZone": null
 			},
 			"customName": "\ud83d\ude12",
-			"query": "select distinct name, sum(usersession.totalErrorCount) as \"Errors\" from useraction where useraction.application=\"MyApp\" and errorcount>0 order by usersession.totalErrorCount",
+			"query": "select distinct name, sum(usersession.totalErrorCount) as \"Errors\" from useraction where useraction.application=\"MyApp\" and errorcount>0 order by sum(usersession.totalErrorCount) DESC",
 			"type": "COLUMN_CHART"
 		},
 		{
