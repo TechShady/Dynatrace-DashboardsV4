@@ -63,7 +63,7 @@ REM Replace revenue system property name
 if !revenue! NEQ NOREVENUE (powershell -Command "Get-ChildItem -Path ./Transform\Marketing*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'revenueproperty') {(Get-Content $_ | ForEach {$_ -replace 'revenueproperty', '!revenue!'}) | Set-Content $_ -encoding UTF8}}")
 echo | set /p=.
 REM Replace Funnel step names
-powershell -Command "Get-ChildItem -Path ./Transform\Marketing*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'Step1') {(Get-Content $_ | ForEach {$_ -replace 'Step1', '!promstep!'}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\Marketing*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepAction1') {(Get-Content $_ | ForEach {$_ -replace 'StepAction1', '!promstep!'}) | Set-Content $_ -encoding UTF8}}"
 echo .
 powershell -Command "Get-ChildItem -Path ./Transform\Marketing*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'LastStep') {(Get-Content $_ | ForEach {$_ -replace 'LastStep', '!laststep!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=Uploading Marketing Dashboard...

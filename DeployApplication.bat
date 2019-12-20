@@ -176,13 +176,13 @@ if !revenue! == NOREVENUE (set "revflag=False")
 set /a "stepcount = (line - 5)/2"
 set laststep=!laststep:"=\\""\\""""!
 REM Get Internal APP ID
-curl -X GET "https://!tenant!/api/config/v1/applications/web" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" > ./Transform/ApplicationList.json
-powershell -Command "Get-ChildItem -Path ./Transform\ApplicationList.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '\{\"values\"\:\[') {(Get-Content $_ | ForEach {$_ -replace '\{\"values\"\:\[', ''}) | Set-Content $_ -encoding UTF8}}"
-powershell -Command "Get-ChildItem -Path ./Transform\ApplicationList.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '\]\}') {(Get-Content $_ | ForEach {$_ -replace '\]\}', ''}) | Set-Content $_ -encoding UTF8}}"
-powershell -Command "Get-ChildItem -Path ./Transform\ApplicationList.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '\{\"id\"\:') {(Get-Content $_ | ForEach {$_ -replace '\{\"id\"\:', ''}) | Set-Content $_ -encoding UTF8}}"
-powershell -Command "Get-ChildItem -Path ./Transform\ApplicationList.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '\"name\"\:') {(Get-Content $_ | ForEach {$_ -replace '\"name\"\:', ''}) | Set-Content $_ -encoding UTF8}}"
-powershell -Command "Get-ChildItem -Path ./Transform\ApplicationList.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '\"id\"\:') {(Get-Content $_ | ForEach {$_ -replace '\"id\"\:', ''}) | Set-Content $_ -encoding UTF8}}"
-powershell -Command "Get-ChildItem -Path ./Transform\ApplicationList.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '\}') {(Get-Content $_ | ForEach {$_ -replace '\}', ''}) | Set-Content $_ -encoding UTF8}}"
+curl -X GET "https://!tenant!/api/config/v1/applications/web" -H "accept: application/json; charset=ascii" -H "Authorization: Api-Token %1" > ./Transform/ApplicationList.json
+powershell -Command "Get-ChildItem -Path ./Transform\ApplicationList.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '\{\"values\"\:\[') {(Get-Content $_ | ForEach {$_ -replace '\{\"values\"\:\[', ''}) | Set-Content $_ -encoding ASCII}}"
+powershell -Command "Get-ChildItem -Path ./Transform\ApplicationList.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '\]\}') {(Get-Content $_ | ForEach {$_ -replace '\]\}', ''}) | Set-Content $_ -encoding ASCII}}"
+powershell -Command "Get-ChildItem -Path ./Transform\ApplicationList.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '\{\"id\"\:') {(Get-Content $_ | ForEach {$_ -replace '\{\"id\"\:', ''}) | Set-Content $_ -encoding ASCII}}"
+powershell -Command "Get-ChildItem -Path ./Transform\ApplicationList.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '\"name\"\:') {(Get-Content $_ | ForEach {$_ -replace '\"name\"\:', ''}) | Set-Content $_ -encoding ASCII}}"
+powershell -Command "Get-ChildItem -Path ./Transform\ApplicationList.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '\"id\"\:') {(Get-Content $_ | ForEach {$_ -replace '\"id\"\:', ''}) | Set-Content $_ -encoding ASCII}}"
+powershell -Command "Get-ChildItem -Path ./Transform\ApplicationList.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '\}') {(Get-Content $_ | ForEach {$_ -replace '\}', ''}) | Set-Content $_ -encoding ASCII}}"
 set /a line=1
 FOR /L %%A IN (3,4,100) DO (
 call :getid !line!
@@ -236,25 +236,25 @@ if !revenue! NEQ NOREVENUE (powershell -Command "Get-ChildItem -Path ./Transform
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'revenueproperty') {(Get-Content $_ | ForEach {$_ -replace 'revenueproperty', '!revenue!'}) | Set-Content $_ -encoding UTF8}}")
 echo | set /p=.
 REM Replace Funnel step names
-if defined f10step (powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22Step10') {(Get-Content $_ | ForEach {$_ -replace '22Step10', '22!f10urlstep!'}) | Set-Content $_ -encoding UTF8}}"
+if defined f10step (powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22StepAction10') {(Get-Content $_ | ForEach {$_ -replace '22StepAction10', '22!f10urlstep!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
-powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'Step10') {(Get-Content $_ | ForEach {$_ -replace 'Step10', '!f10step!'}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepAction10') {(Get-Content $_ | ForEach {$_ -replace 'StepAction10', '!f10step!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepHeader10') {(Get-Content $_ | ForEach {$_ -replace 'StepHeader10', '!f10headerstep!'}) | Set-Content $_ -encoding UTF8}}")
-if defined f11step (powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22Step11') {(Get-Content $_ | ForEach {$_ -replace '22Step11', '22!f11urlstep!'}) | Set-Content $_ -encoding UTF8}}"
+if defined f11step (powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22StepAction11') {(Get-Content $_ | ForEach {$_ -replace '22StepAction11', '22!f11urlstep!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
-powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'Step11') {(Get-Content $_ | ForEach {$_ -replace 'Step11', '!f11step!'}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepAction11') {(Get-Content $_ | ForEach {$_ -replace 'StepAction11', '!f11step!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepHeader11') {(Get-Content $_ | ForEach {$_ -replace 'StepHeader11', '!f11headerstep!'}) | Set-Content $_ -encoding UTF8}}")
-if defined f12step (powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'Step12') {(Get-Content $_ | ForEach {$_ -replace 'Step12', '!f12step!'}) | Set-Content $_ -encoding UTF8}}"
+if defined f12step (powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepAction12') {(Get-Content $_ | ForEach {$_ -replace 'StepAction12', '!f12step!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepHeader12') {(Get-Content $_ | ForEach {$_ -replace 'StepHeader12', '!f12headerstep!'}) | Set-Content $_ -encoding UTF8}}")
 echo | set /p=.
-powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22Step1') {(Get-Content $_ | ForEach {$_ -replace '22Step1', '22!f1urlstep!'}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22StepAction1') {(Get-Content $_ | ForEach {$_ -replace '22StepAction1', '22!f1urlstep!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
-powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22Step2') {(Get-Content $_ | ForEach {$_ -replace '22Step2', '22!f2urlstep!'}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22StepAction2') {(Get-Content $_ | ForEach {$_ -replace '22StepAction2', '22!f2urlstep!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
-powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22Step3') {(Get-Content $_ | ForEach {$_ -replace '22Step3', '22!f3urlstep!'}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22StepAction3') {(Get-Content $_ | ForEach {$_ -replace '22StepAction3', '22!f3urlstep!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepHeader1') {(Get-Content $_ | ForEach {$_ -replace 'StepHeader1', '!f1headerstep!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
@@ -262,41 +262,41 @@ powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {
 echo | set /p=.
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepHeader3') {(Get-Content $_ | ForEach {$_ -replace 'StepHeader3', '!f3headerstep!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
-powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'CompareStep1') {(Get-Content $_ | ForEach {$_ -replace 'CompareStep1', '!f1step!'}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'CompareStepAction1') {(Get-Content $_ | ForEach {$_ -replace 'CompareStepAction1', '!f1step!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
-powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'Step1') {(Get-Content $_ | ForEach {$_ -replace 'Step1', '!f1step!'}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepAction1') {(Get-Content $_ | ForEach {$_ -replace 'StepAction1', '!f1step!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
-powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'Step2') {(Get-Content $_ | ForEach {$_ -replace 'Step2', '!f2step!'}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepAction2') {(Get-Content $_ | ForEach {$_ -replace 'StepAction2', '!f2step!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
-powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'Step3') {(Get-Content $_ | ForEach {$_ -replace 'Step3', '!f3step!'}) | Set-Content $_ -encoding UTF8}}"
-if defined f4step (powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22Step4') {(Get-Content $_ | ForEach {$_ -replace '22Step4', '22!f4urlstep!'}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepAction3') {(Get-Content $_ | ForEach {$_ -replace 'StepAction3', '!f3step!'}) | Set-Content $_ -encoding UTF8}}"
+if defined f4step (powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22StepAction4') {(Get-Content $_ | ForEach {$_ -replace '22StepAction4', '22!f4urlstep!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
-powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'Step4') {(Get-Content $_ | ForEach {$_ -replace 'Step4', '!f4step!'}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepAction4') {(Get-Content $_ | ForEach {$_ -replace 'StepAction4', '!f4step!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepHeader4') {(Get-Content $_ | ForEach {$_ -replace 'StepHeader4', '!f4headerstep!'}) | Set-Content $_ -encoding UTF8}}")
-if defined f5step (powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22Step5') {(Get-Content $_ | ForEach {$_ -replace '22Step5', '22!f5urlstep!'}) | Set-Content $_ -encoding UTF8}}"
+if defined f5step (powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22StepAction5') {(Get-Content $_ | ForEach {$_ -replace '22StepAction5', '22!f5urlstep!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
-powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'Step5') {(Get-Content $_ | ForEach {$_ -replace 'Step5', '!f5step!'}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepAction5') {(Get-Content $_ | ForEach {$_ -replace 'StepAction5', '!f5step!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepHeader5') {(Get-Content $_ | ForEach {$_ -replace 'StepHeader5', '!f5headerstep!'}) | Set-Content $_ -encoding UTF8}}")
-if defined f6step (powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22Step6') {(Get-Content $_ | ForEach {$_ -replace '22Step6', '22!f6urlstep!'}) | Set-Content $_ -encoding UTF8}}"
+if defined f6step (powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22StepAction6') {(Get-Content $_ | ForEach {$_ -replace '22StepAction6', '22!f6urlstep!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
-powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'Step6') {(Get-Content $_ | ForEach {$_ -replace 'Step6', '!f6step!'}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepAction6') {(Get-Content $_ | ForEach {$_ -replace 'StepAction6', '!f6step!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepHeader6') {(Get-Content $_ | ForEach {$_ -replace 'StepHeader6', '!f6headerstep!'}) | Set-Content $_ -encoding UTF8}}")
-if defined f7step (powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22Step7') {(Get-Content $_ | ForEach {$_ -replace '22Step7', '22!f7urlstep!'}) | Set-Content $_ -encoding UTF8}}"
+if defined f7step (powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22StepAction7') {(Get-Content $_ | ForEach {$_ -replace '22StepAction7', '22!f7urlstep!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
-powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'Step7') {(Get-Content $_ | ForEach {$_ -replace 'Step7', '!f7step!'}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepAction7') {(Get-Content $_ | ForEach {$_ -replace 'StepAction7', '!f7step!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepHeader7') {(Get-Content $_ | ForEach {$_ -replace 'StepHeader7', '!f7headerstep!'}) | Set-Content $_ -encoding UTF8}}")
-if defined f8step (powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22Step8') {(Get-Content $_ | ForEach {$_ -replace '22Step8', '22!f8urlstep!'}) | Set-Content $_ -encoding UTF8}}"
+if defined f8step (powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22StepAction8') {(Get-Content $_ | ForEach {$_ -replace '22StepAction8', '22!f8urlstep!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
-powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'Step8') {(Get-Content $_ | ForEach {$_ -replace 'Step8', '!f8step!'}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepAction8') {(Get-Content $_ | ForEach {$_ -replace 'StepAction8', '!f8step!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepHeader8') {(Get-Content $_ | ForEach {$_ -replace 'StepHeader8', '!f8headerstep!'}) | Set-Content $_ -encoding UTF8}}")
-if defined f9step (powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22Step9') {(Get-Content $_ | ForEach {$_ -replace '22Step9', '22!f9urlstep!'}) | Set-Content $_ -encoding UTF8}}"
+if defined f9step (powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern '22StepAction9') {(Get-Content $_ | ForEach {$_ -replace '22StepAction9', '22!f9urlstep!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
-powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'Step9') {(Get-Content $_ | ForEach {$_ -replace 'Step9', '!f9step!'}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepAction9') {(Get-Content $_ | ForEach {$_ -replace 'StepAction9', '!f9step!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 powershell -Command "Get-ChildItem -Path ./Transform\*.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepHeader9') {(Get-Content $_ | ForEach {$_ -replace 'StepHeader9', '!f9headerstep!'}) | Set-Content $_ -encoding UTF8}}")
 set lasturlstep=!laststep: =%%20!
@@ -363,98 +363,98 @@ curl -X PUT "https://!tenant!/api/config/v1/dashboards/934b0dce-bbf4-443d-b0f0-e
 echo | set /p=.
 curl -X PUT "https://!tenant!/api/config/v1/dashboards/935b0dce-bbf4-443d-b0f0-e370faeda%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\MarketingOverview2False.json)
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/1fc1af04-a855-43cb-855c-c32f4ecda%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep1.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/1fc1af04-a855-43cb-855c-c32f4ecda%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction1.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/2662ddb8-dd6a-4345-a1bc-7ff069eda%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep2.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/2662ddb8-dd6a-4345-a1bc-7ff069eda%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction2.json
 echo | set /p=.
-if defined f4step (curl -X PUT "https://!tenant!/api/config/v1/dashboards/10a69069-74c2-4eba-b18a-6856d91da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep3.json)
+if defined f4step (curl -X PUT "https://!tenant!/api/config/v1/dashboards/10a69069-74c2-4eba-b18a-6856d91da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction3.json)
 echo | set /p=.
-if defined f5step (curl -X PUT "https://!tenant!/api/config/v1/dashboards/10a69069-74c2-4eba-b18a-6856d91da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep3.json
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/7f64e3ef-239c-416a-b3a4-66b99beda%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep4.json)
+if defined f5step (curl -X PUT "https://!tenant!/api/config/v1/dashboards/10a69069-74c2-4eba-b18a-6856d91da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction3.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/7f64e3ef-239c-416a-b3a4-66b99beda%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction4.json)
 echo | set /p=.
-if defined f6step (curl -X PUT "https://!tenant!/api/config/v1/dashboards/10a69069-74c2-4eba-b18a-6856d91da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep3.json
+if defined f6step (curl -X PUT "https://!tenant!/api/config/v1/dashboards/10a69069-74c2-4eba-b18a-6856d91da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction3.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/7f64e3ef-239c-416a-b3a4-66b99beda%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep4.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/7f64e3ef-239c-416a-b3a4-66b99beda%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction4.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac15-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep5.json)
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac15-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction5.json)
 echo | set /p=.
-if defined f7step (curl -X PUT "https://!tenant!/api/config/v1/dashboards/10a69069-74c2-4eba-b18a-6856d91da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep3.json
+if defined f7step (curl -X PUT "https://!tenant!/api/config/v1/dashboards/10a69069-74c2-4eba-b18a-6856d91da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction3.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/7f64e3ef-239c-416a-b3a4-66b99beda%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep4.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/7f64e3ef-239c-416a-b3a4-66b99beda%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction4.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac15-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep5.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac15-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction5.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac06-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep6.json)
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac06-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction6.json)
 echo | set /p=.
-if defined f8step (curl -X PUT "https://!tenant!/api/config/v1/dashboards/10a69069-74c2-4eba-b18a-6856d91da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep3.json
+if defined f8step (curl -X PUT "https://!tenant!/api/config/v1/dashboards/10a69069-74c2-4eba-b18a-6856d91da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction3.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/7f64e3ef-239c-416a-b3a4-66b99beda%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep4.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/7f64e3ef-239c-416a-b3a4-66b99beda%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction4.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac15-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep5.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac15-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction5.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac06-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep6.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac06-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction6.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac07-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep7.json)
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac07-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction7.json)
 echo | set /p=.
-if defined f9step (curl -X PUT "https://!tenant!/api/config/v1/dashboards/10a69069-74c2-4eba-b18a-6856d91da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep3.json
+if defined f9step (curl -X PUT "https://!tenant!/api/config/v1/dashboards/10a69069-74c2-4eba-b18a-6856d91da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction3.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/7f64e3ef-239c-416a-b3a4-66b99beda%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep4.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/7f64e3ef-239c-416a-b3a4-66b99beda%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction4.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac15-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep5.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac15-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction5.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac06-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep6.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac06-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction6.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac07-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep7.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac07-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction7.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac08-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep8.json)
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac08-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction8.json)
 echo | set /p=.
-if defined f10step (curl -X PUT "https://!tenant!/api/config/v1/dashboards/10a69069-74c2-4eba-b18a-6856d91da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep3.json
+if defined f10step (curl -X PUT "https://!tenant!/api/config/v1/dashboards/10a69069-74c2-4eba-b18a-6856d91da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction3.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/7f64e3ef-239c-416a-b3a4-66b99beda%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep4.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/7f64e3ef-239c-416a-b3a4-66b99beda%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction4.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac15-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep5.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac15-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction5.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac06-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep6.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac06-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction6.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac07-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep7.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac07-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction7.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac08-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep8.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac08-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction8.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac09-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep9.json)
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac09-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction9.json)
 echo | set /p=.
-if defined f11step (curl -X PUT "https://!tenant!/api/config/v1/dashboards/10a69069-74c2-4eba-b18a-6856d91da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep3.json
+if defined f11step (curl -X PUT "https://!tenant!/api/config/v1/dashboards/10a69069-74c2-4eba-b18a-6856d91da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction3.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/7f64e3ef-239c-416a-b3a4-66b99beda%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep4.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/7f64e3ef-239c-416a-b3a4-66b99beda%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction4.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac15-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep5.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac15-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction5.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac06-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep6.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac06-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction6.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac07-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep7.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac07-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction7.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac08-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep8.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac08-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction8.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac09-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep9.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac09-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction9.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac10-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep10.json)
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac10-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction10.json)
 echo | set /p=.
-if defined f12step (curl -X PUT "https://!tenant!/api/config/v1/dashboards/10a69069-74c2-4eba-b18a-6856d91da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep3.json
+if defined f12step (curl -X PUT "https://!tenant!/api/config/v1/dashboards/10a69069-74c2-4eba-b18a-6856d91da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction3.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/7f64e3ef-239c-416a-b3a4-66b99beda%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep4.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/7f64e3ef-239c-416a-b3a4-66b99beda%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction4.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac15-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep5.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac15-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction5.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac06-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep6.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac06-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction6.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac07-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep7.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac07-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction7.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac08-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep8.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac08-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction8.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac09-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep9.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac09-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction9.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac10-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep10.json
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac10-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction10.json
 echo | set /p=.
-curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac11-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStep11.json)
+curl -X PUT "https://!tenant!/api/config/v1/dashboards/a7340848-3f03-4155-ac11-d8ea4a7da%dashboardkey%" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" -H "Content-Type: application/json; charset=utf-8" -d @./Transform\FunnelAnalysisStepAction11.json)
 if %posnum% NEQ 1 (echo .
 REM Get Key Store Dashboard
 curl -X GET "https://!tenant!/api/config/v1/dashboards/d4db8e38-000f-42df-85a9-d491d34da000" -H "accept: application/json; charset=utf-8" -H "Authorization: Api-Token %1" > ./Transform/KeyStore.json

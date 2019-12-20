@@ -89,7 +89,7 @@
         "managementZone": null
       },
       "customName": "Satisfied Users",
-      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"Step1\" and useraction.name !=\"LastStep\" and userExperienceScore=\"SATISFIED\"",
+      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"StepAction1\" and useraction.name !=\"LastStep\" and userExperienceScore=\"SATISFIED\"",
       "type": "SINGLE_VALUE"
     },
     {
@@ -107,7 +107,7 @@
         "managementZone": null
       },
       "customName": "Tolerated Users",
-      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"Step1\" and useraction.name !=\"LastStep\" and userExperienceScore=\"TOLERATED\"",
+      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"StepAction1\" and useraction.name !=\"LastStep\" and userExperienceScore=\"TOLERATED\"",
       "type": "SINGLE_VALUE"
     },
     {
@@ -125,7 +125,7 @@
         "managementZone": null
       },
       "customName": "Frustrated Users",
-      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"Step1\" and useraction.name !=\"LastStep\" and userExperienceScore=\"FRUSTRATED\"",
+      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"StepAction1\" and useraction.name !=\"LastStep\" and userExperienceScore=\"FRUSTRATED\"",
       "type": "SINGLE_VALUE"
     },
     {
@@ -249,7 +249,7 @@
         "managementZone": null
       },
       "customName": "Tolerated Users",
-      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyCompareApp\" and useraction.name=\"CompareStep1\" and useraction.name !=\"CompareLastStep\" and userExperienceScore=\"TOLERATED\"",
+      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyCompareApp\" and useraction.name=\"CompareStepAction1\" and useraction.name !=\"CompareLastStep\" and userExperienceScore=\"TOLERATED\"",
       "type": "SINGLE_VALUE"
     },
     {
@@ -285,7 +285,7 @@
         "managementZone": null
       },
       "customName": "Frustrated Users",
-      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyCompareApp\" and useraction.name=\"CompareStep1\" and useraction.name !=\"CompareLastStep\" and userExperienceScore=\"FRUSTRATED\"",
+      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyCompareApp\" and useraction.name=\"CompareStepAction1\" and useraction.name !=\"CompareLastStep\" and userExperienceScore=\"FRUSTRATED\"",
       "type": "SINGLE_VALUE"
     },
     {
@@ -303,7 +303,7 @@
         "managementZone": null
       },
       "customName": "Satisfied Users",
-      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyCompareApp\" and useraction.name=\"CompareStep1\" and useraction.name !=\"CompareLastStep\" and userExperienceScore=\"SATISFIED\"",
+      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyCompareApp\" and useraction.name=\"CompareStepAction1\" and useraction.name !=\"CompareLastStep\" and userExperienceScore=\"SATISFIED\"",
       "type": "SINGLE_VALUE"
     },
     {

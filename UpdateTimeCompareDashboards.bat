@@ -88,9 +88,9 @@ echo | set /p=.
 powershell -Command "Get-ChildItem -Path ./Transform\*Compare.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'MyCompareTime') {(Get-Content $_ | ForEach {$_ -replace 'MyCompareTime', '!comparetimevalue!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 REM Replace first step
-powershell -Command "Get-ChildItem -Path ./Transform\*Compare.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'CompareStep1') {(Get-Content $_ | ForEach {$_ -replace 'CompareStep1', '!f1step!'}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\*Compare.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'CompareStepAction1') {(Get-Content $_ | ForEach {$_ -replace 'CompareStepAction1', '!f1step!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
-powershell -Command "Get-ChildItem -Path ./Transform\*Compare.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'Step1') {(Get-Content $_ | ForEach {$_ -replace 'Step1', '!f1step!'}) | Set-Content $_ -encoding UTF8}}"
+powershell -Command "Get-ChildItem -Path ./Transform\*Compare.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'StepAction1') {(Get-Content $_ | ForEach {$_ -replace 'StepAction1', '!f1step!'}) | Set-Content $_ -encoding UTF8}}"
 echo | set /p=.
 REM Replace last step
 powershell -Command "Get-ChildItem -Path ./Transform\*Compare.json -recurse | ForEach {If (Get-Content $_.FullName | Select-String -Pattern 'CompareLastStep') {(Get-Content $_ | ForEach {$_ -replace 'CompareLastStep', '!laststep!'}) | Set-Content $_ -encoding UTF8}}"

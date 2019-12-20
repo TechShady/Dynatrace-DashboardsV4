@@ -347,7 +347,7 @@
         "managementZone": null
       },
       "customName": "Satisfied Users",
-      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"Step1\" and useraction.name !=\"LastStep\" and userExperienceScore=\"SATISFIED\" and revenueproperty>0",
+      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"StepAction1\" and useraction.name !=\"LastStep\" and userExperienceScore=\"SATISFIED\" and revenueproperty>0",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -366,7 +366,7 @@
         "managementZone": null
       },
       "customName": "Tolerated Users",
-      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"Step1\" and useraction.name !=\"LastStep\" and userExperienceScore=\"TOLERATED\" and revenueproperty>0",
+      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"StepAction1\" and useraction.name !=\"LastStep\" and userExperienceScore=\"TOLERATED\" and revenueproperty>0",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -385,7 +385,7 @@
         "managementZone": null
       },
       "customName": "Frustrated Users",
-      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"Step1\" and useraction.name !=\"LastStep\" and userExperienceScore=\"FRUSTRATED\" and revenueproperty>0",
+      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"StepAction1\" and useraction.name !=\"LastStep\" and userExperienceScore=\"FRUSTRATED\" and revenueproperty>0",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -442,7 +442,7 @@
         "managementZone": null
       },
       "customName": "New User Revenue",
-      "query": "select sum(revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"Step1\" and useraction.name=\"LastStep\" and newUser IS true",
+      "query": "select sum(revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"StepAction1\" and useraction.name=\"LastStep\" and newUser IS true",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -461,7 +461,7 @@
         "managementZone": null
       },
       "customName": "Returning User Revenue",
-      "query": "select sum(revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"Step1\" and useraction.name=\"LastStep\" and newUser IS false",
+      "query": "select sum(revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"StepAction1\" and useraction.name=\"LastStep\" and newUser IS false",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -532,7 +532,7 @@
         "managementZone": null
       },
       "customName": "Abandons",
-      "query": "select userExperienceScore, count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name = \"Step1\" and useraction.name!=\"LastStep\" group by userExperienceScore",
+      "query": "select userExperienceScore, count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name = \"StepAction1\" and useraction.name!=\"LastStep\" group by userExperienceScore",
       "type": "PIE_CHART"
     },
     {

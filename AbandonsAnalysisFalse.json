@@ -35,7 +35,7 @@
         "managementZone": null
       },
       "customName": "\ud83d\ude0a",
-      "query": "select count(distinct userSessionId) as \"Abandons Count\" FROM usersession where useraction.application=\"MyApp\" and\n\tuseraction.name=\"Step1\" and userExperienceScore=\"SATISFIED\" and useraction.name!=\"LastStep\"",
+      "query": "select count(distinct userSessionId) as \"Abandons Count\" FROM usersession where useraction.application=\"MyApp\" and\n\tuseraction.name=\"StepAction1\" and userExperienceScore=\"SATISFIED\" and useraction.name!=\"LastStep\"",
       "type": "SINGLE_VALUE", "timeFrameShift": "-2h"
     },
     {
@@ -53,7 +53,7 @@
         "managementZone": null
       },
       "customName": "\ud83d\ude1f",
-      "query": "select count(distinct userSessionId) as \"Abandons Count\" FROM usersession where useraction.application=\"MyApp\" and\n\tuseraction.name=\"Step1\" and userExperienceScore=\"TOLERATED\" and useraction.name!=\"LastStep\"",
+      "query": "select count(distinct userSessionId) as \"Abandons Count\" FROM usersession where useraction.application=\"MyApp\" and\n\tuseraction.name=\"StepAction1\" and userExperienceScore=\"TOLERATED\" and useraction.name!=\"LastStep\"",
       "type": "SINGLE_VALUE", "timeFrameShift": "-2h"
     },
     {
@@ -71,7 +71,7 @@
         "managementZone": null
       },
       "customName": "\ud83d\ude22",
-      "query": "select count(distinct userSessionId) as \"Abandons Count\" FROM usersession where useraction.application=\"MyApp\" and\n\tuseraction.name=\"Step1\" and userExperienceScore=\"FRUSTRATED\" and useraction.name!=\"LastStep\"",
+      "query": "select count(distinct userSessionId) as \"Abandons Count\" FROM usersession where useraction.application=\"MyApp\" and\n\tuseraction.name=\"StepAction1\" and userExperienceScore=\"FRUSTRATED\" and useraction.name!=\"LastStep\"",
       "type": "SINGLE_VALUE", "timeFrameShift": "-2h"
     },
     {
@@ -105,7 +105,7 @@
         "managementZone": null
       },
       "customName": "\u2620",
-      "query": "select distinct DATETIME(starttime, \"HH:mm\", \"10m\") as \"Time\", count(userSessionId) as \"Abandons Count\" FROM usersession where useraction.application=\"MyApp\" and\n\tuseraction.name=\"Step1\" and useraction.name!=\"LastStep\"",
+      "query": "select distinct DATETIME(starttime, \"HH:mm\", \"10m\") as \"Time\", count(userSessionId) as \"Abandons Count\" FROM usersession where useraction.application=\"MyApp\" and\n\tuseraction.name=\"StepAction1\" and useraction.name!=\"LastStep\"",
       "type": "COLUMN_CHART"
     },
     {
@@ -137,7 +137,7 @@
         "timeframe": null,
         "managementZone": null
       },
-      "markdown": "## [Satisfied](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22%20FROM%20usersession%20where%0A%09useraction.name%3D%22Step1%22%20and%20userExperienceScore%3D%22SATISFIED%22%20and%20useraction.name!%3D%22LastStep%22%20&visualization=TABLE)"
+      "markdown": "## [Satisfied](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22%20FROM%20usersession%20where%0A%09useraction.name%3D%22StepAction1%22%20and%20userExperienceScore%3D%22SATISFIED%22%20and%20useraction.name!%3D%22LastStep%22%20&visualization=TABLE)"
     },
     {
       "name": "Markdown",
@@ -153,7 +153,7 @@
         "timeframe": null,
         "managementZone": null
       },
-      "markdown": "## [Tolerated](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22%20FROM%20usersession%20where%0A%09useraction.name%3D%22Step1%22%20and%20userExperienceScore%3D%22TOLERATED%22%20and%20useraction.name!%3D%22LastStep%22%20&visualization=TABLE)"
+      "markdown": "## [Tolerated](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22%20FROM%20usersession%20where%0A%09useraction.name%3D%22StepAction1%22%20and%20userExperienceScore%3D%22TOLERATED%22%20and%20useraction.name!%3D%22LastStep%22%20&visualization=TABLE)"
     },
     {
       "name": "Markdown",
@@ -169,7 +169,7 @@
         "timeframe": null,
         "managementZone": null
       },
-      "markdown": "## [Frustrated](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22%20FROM%20usersession%20where%0A%09useraction.name%3D%22Step1%22%20and%20userExperienceScore%3D%22FRUSTRATED%22%20and%20useraction.name!%3D%22LastStep%22%20&visualization=TABLE)"
+      "markdown": "## [Frustrated](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22%20FROM%20usersession%20where%0A%09useraction.name%3D%22StepAction1%22%20and%20userExperienceScore%3D%22FRUSTRATED%22%20and%20useraction.name!%3D%22LastStep%22%20&visualization=TABLE)"
     },
     {
       "name": "Abandons by Apdex",
@@ -216,7 +216,7 @@
         "managementZone": null
       },
       "customName": "\u2620",
-      "query": "SELECT userExperienceScore, count(userSessionId) FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"Step1\" and useraction.name!=\"LastStep\" group by userExperienceScore order by count(userSessionId) desc",
+      "query": "SELECT userExperienceScore, count(userSessionId) FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"StepAction1\" and useraction.name!=\"LastStep\" group by userExperienceScore order by count(userSessionId) desc",
       "type": "PIE_CHART"
     },
     {
@@ -234,7 +234,7 @@
         "managementZone": null
       },
       "customName": "\u2620",
-      "query": "SELECT browserFamily, count(userSessionId) FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"Step1\" and useraction.name!=\"LastStep\" group by browserFamily order by count(userSessionId) desc",
+      "query": "SELECT browserFamily, count(userSessionId) FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"StepAction1\" and useraction.name!=\"LastStep\" group by browserFamily order by count(userSessionId) desc",
       "type": "PIE_CHART"
     },
     {
@@ -251,7 +251,7 @@
         "timeframe": null,
         "managementZone": null
       },
-      "markdown": "## [Abandons](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22%20FROM%20usersession%20where%0A%09useraction.name%3D%22Step1%22%20and%20useraction.name!%3D%22LastStep%22%20&visualization=TABLE)"
+      "markdown": "## [Abandons](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userId%20as%20%22User%22%20FROM%20usersession%20where%0A%09useraction.name%3D%22StepAction1%22%20and%20useraction.name!%3D%22LastStep%22%20&visualization=TABLE)"
     },
     {
       "name": "User Sessions Query",
@@ -268,7 +268,7 @@
         "managementZone": null
       },
       "customName": "\u2620",
-      "query": "select count(distinct userSessionId) as \"Abandons Count\" FROM usersession where useraction.application=\"MyApp\" and\n\tuseraction.name=\"Step1\" and useraction.name!=\"LastStep\"",
+      "query": "select count(distinct userSessionId) as \"Abandons Count\" FROM usersession where useraction.application=\"MyApp\" and\n\tuseraction.name=\"StepAction1\" and useraction.name!=\"LastStep\"",
       "type": "SINGLE_VALUE", "timeFrameShift": "-2h"
     }
   ]

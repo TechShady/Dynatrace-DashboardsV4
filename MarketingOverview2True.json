@@ -35,7 +35,7 @@
         "managementZone": null
       },
       "customName": "Rage Clicks",
-      "query": "select sum(numberOfRageClicks) as \"Rage Clicks\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"Step1\"",
+      "query": "select sum(numberOfRageClicks) as \"Rage Clicks\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"StepAction1\"",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -54,7 +54,7 @@
         "managementZone": null
       },
       "customName": "Satisfied Sessions",
-      "query": "select count(usersessionid) as \"Satisfied Sessions\" from usersession where useraction.application=\"MyApp\" and userExperienceScore=\"SATISFIED\" and useraction.name=\"Step1\"",
+      "query": "select count(usersessionid) as \"Satisfied Sessions\" from usersession where useraction.application=\"MyApp\" and userExperienceScore=\"SATISFIED\" and useraction.name=\"StepAction1\"",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -73,7 +73,7 @@
         "managementZone": null
       },
       "customName": "Tolerated Sessions",
-      "query": "select count(usersessionid) as \"Tolerated Sessions\" from usersession where useraction.application=\"MyApp\" and userExperienceScore=\"TOLERATED\"  and useraction.name=\"Step1\"",
+      "query": "select count(usersessionid) as \"Tolerated Sessions\" from usersession where useraction.application=\"MyApp\" and userExperienceScore=\"TOLERATED\"  and useraction.name=\"StepAction1\"",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -92,7 +92,7 @@
         "managementZone": null
       },
       "customName": "Frustrated Sessions",
-      "query": "select count(usersessionid) as \"Frustrated Sessions\" from usersession where useraction.application=\"MyApp\" and userExperienceScore=\"FRUSTRATED\"  and useraction.name=\"Step1\"",
+      "query": "select count(usersessionid) as \"Frustrated Sessions\" from usersession where useraction.application=\"MyApp\" and userExperienceScore=\"FRUSTRATED\"  and useraction.name=\"StepAction1\"",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -111,7 +111,7 @@
         "managementZone": null
       },
       "customName": "Conversions",
-      "query": "select count(usersessionid) as \"Conversions\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\"  and useraction.name=\"Step1\"",
+      "query": "select count(usersessionid) as \"Conversions\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\"  and useraction.name=\"StepAction1\"",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -130,7 +130,7 @@
         "managementZone": null
       },
       "customName": "Nonengaged Sessions",
-      "query": "select count(usersessionid) as \"Nonengaged Sessions\" from usersession where useraction.application=\"MyApp\" and duration > 180000 and userActionCount < 10 and useraction.name=\"Step1\"",
+      "query": "select count(usersessionid) as \"Nonengaged Sessions\" from usersession where useraction.application=\"MyApp\" and duration > 180000 and userActionCount < 10 and useraction.name=\"StepAction1\"",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -149,7 +149,7 @@
         "managementZone": null
       },
       "customName": "Abandons",
-      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name!=\"LastStep\"  and useraction.name=\"Step1\"",
+      "query": "select count(usersessionid) as \"Abandons\" from usersession where useraction.application=\"MyApp\" and useraction.name!=\"LastStep\"  and useraction.name=\"StepAction1\"",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -168,7 +168,7 @@
         "managementZone": null
       },
       "customName": "Duration",
-      "query": "select AVG(duration) as \"Duration\" from useraction where useraction.application=\"MyApp\" and useraction.name=\"Step1\"",
+      "query": "select AVG(duration) as \"Duration\" from useraction where useraction.application=\"MyApp\" and useraction.name=\"StepAction1\"",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -187,7 +187,7 @@
         "managementZone": null
       },
       "customName": "Errors",
-      "query": "select sum(usersession.totalErrorCount) as \"Errors\" from useraction where useraction.application=\"MyApp\" and useraction.name=\"Step1\"",
+      "query": "select sum(usersession.totalErrorCount) as \"Errors\" from useraction where useraction.application=\"MyApp\" and useraction.name=\"StepAction1\"",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -206,7 +206,7 @@
         "managementZone": null
       },
       "customName": "Revenue",
-      "query": "select sum(revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\" and useraction.name=\"Step1\"",
+      "query": "select sum(revenueproperty) as \"Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\" and useraction.name=\"StepAction1\"",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -225,7 +225,7 @@
         "managementZone": null
       },
       "customName": "\ud83c\udfc1",
-      "query": "select DISTINCT DATETIME(starttime, \"HH:mm\", \"10m\") as \"Time\", count(*) as \"Conversions\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\" and useraction.name=\"Step1\"",
+      "query": "select DISTINCT DATETIME(starttime, \"HH:mm\", \"10m\") as \"Time\", count(*) as \"Conversions\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\" and useraction.name=\"StepAction1\"",
       "type": "COLUMN_CHART"
     },
     {
@@ -259,7 +259,7 @@
         "managementZone": null
       },
       "customName": "Lost Revenue",
-      "query": "select sum(revenueproperty) as \"Lost Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name!=\"LastStep\" and useraction.name=\"Step1\"",
+      "query": "select sum(revenueproperty) as \"Lost Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name!=\"LastStep\" and useraction.name=\"StepAction1\"",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -278,7 +278,7 @@
         "managementZone": null
       },
       "customName": "Risk Revenue",
-      "query": "select sum(revenueproperty) as \"Risk Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\" and useraction.name=\"Step1\" and userExperienceScore!=\"SATISFIED\"",
+      "query": "select sum(revenueproperty) as \"Risk Revenue\" FROM usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\" and useraction.name=\"StepAction1\" and userExperienceScore!=\"SATISFIED\"",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -327,7 +327,7 @@
         "managementZone": null
       },
       "customName": "Satisfied Revenue",
-      "query": "select sum(revenueproperty) as \"Satisfied Revenue\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\"  and userExperienceScore=\"SATISFIED\" and useraction.name=\"Step1\"",
+      "query": "select sum(revenueproperty) as \"Satisfied Revenue\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\"  and userExperienceScore=\"SATISFIED\" and useraction.name=\"StepAction1\"",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -346,7 +346,7 @@
         "managementZone": null
       },
       "customName": "Tolerated Revenue",
-      "query": "select sum(revenueproperty) as \"Tolerated Revenue\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\"  and userExperienceScore=\"TOLERATED\"  and useraction.name=\"Step1\"",
+      "query": "select sum(revenueproperty) as \"Tolerated Revenue\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\"  and userExperienceScore=\"TOLERATED\"  and useraction.name=\"StepAction1\"",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },
@@ -365,7 +365,7 @@
         "managementZone": null
       },
       "customName": "Frustrated Revenue",
-      "query": "select sum(revenueproperty) as \"Frustrated Revenue\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\"  and userExperienceScore=\"FRUSTRATED\"  and useraction.name=\"Step1\"",
+      "query": "select sum(revenueproperty) as \"Frustrated Revenue\" from usersession where useraction.application=\"MyApp\" and useraction.name=\"LastStep\"  and userExperienceScore=\"FRUSTRATED\"  and useraction.name=\"StepAction1\"",
       "type": "SINGLE_VALUE",
       "timeFrameShift": "-2h"
     },

@@ -153,7 +153,7 @@
         "managementZone": null
       },
       "customName": "\ud83d\udc0e",
-      "query": "select count(distinct userSessionId) as \"Abandons\"  FROM usersession where useraction.application=\"MyApp\" and\n\tduration<=60000 and useraction.name=\"Step1\" and useraction.name!=\"LastStep\"",
+      "query": "select count(distinct userSessionId) as \"Abandons\"  FROM usersession where useraction.application=\"MyApp\" and\n\tduration<=60000 and useraction.name=\"StepAction1\" and useraction.name!=\"LastStep\"",
       "type": "SINGLE_VALUE", "timeFrameShift": "-2h"
     },
     {
@@ -171,7 +171,7 @@
         "managementZone": null
       },
       "customName": "\ud83d\udc07",
-      "query": "select count(distinct userSessionId) as \"Abandons\"  FROM usersession where useraction.application=\"MyApp\" and\n\tduration>60000 AND duration<=180000 and useraction.name=\"Step1\" and useraction.name!=\"LastStep\"",
+      "query": "select count(distinct userSessionId) as \"Abandons\"  FROM usersession where useraction.application=\"MyApp\" and\n\tduration>60000 AND duration<=180000 and useraction.name=\"StepAction1\" and useraction.name!=\"LastStep\"",
       "type": "SINGLE_VALUE", "timeFrameShift": "-2h"
     },
     {
@@ -189,7 +189,7 @@
         "managementZone": null
       },
       "customName": "\ud83d\udc22",
-      "query": "select count(distinct userSessionId) as \"Abandons\"  FROM usersession where useraction.application=\"MyApp\" and\n\tduration>180000 and useraction.name=\"Step1\" and useraction.name!=\"LastStep\"",
+      "query": "select count(distinct userSessionId) as \"Abandons\"  FROM usersession where useraction.application=\"MyApp\" and\n\tduration>180000 and useraction.name=\"StepAction1\" and useraction.name!=\"LastStep\"",
       "type": "SINGLE_VALUE", "timeFrameShift": "-2h"
     },
     {
@@ -206,7 +206,7 @@
         "timeframe": null,
         "managementZone": null
       },
-      "markdown": "## [Fast Duration (<1m)](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid%20as%20%22User%22,%20duration%20as%20%22Duration%22%20%20FROM%20usersession%20where%0A%09duration%3C%3D60000%20and%20useraction.name%3D%22Step1%22%20and%20useraction.name!%3D%22LastStep%22%20order%20by%20duration%20desc%0A&visualization=TABLE)"
+      "markdown": "## [Fast Duration (<1m)](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid%20as%20%22User%22,%20duration%20as%20%22Duration%22%20%20FROM%20usersession%20where%0A%09duration%3C%3D60000%20and%20useraction.name%3D%22StepAction1%22%20and%20useraction.name!%3D%22LastStep%22%20order%20by%20duration%20desc%0A&visualization=TABLE)"
     },
     {
       "name": "Markdown",
@@ -222,7 +222,7 @@
         "timeframe": null,
         "managementZone": null
       },
-      "markdown": "## [Medium Duration (1-3m)](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid%20as%20%22User%22,%20duration%20as%20%22Duration%22%20%20FROM%20usersession%20where%0A%09duration%3E60000%20AND%20duration%3C%3D180000%20and%20useraction.name%3D%22Step1%22%20and%20useraction.name!%3D%22LastStep%22%20ORDER%20BY%20duration%20desc%0A&visualization=TABLE)"
+      "markdown": "## [Medium Duration (1-3m)](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid%20as%20%22User%22,%20duration%20as%20%22Duration%22%20%20FROM%20usersession%20where%0A%09duration%3E60000%20AND%20duration%3C%3D180000%20and%20useraction.name%3D%22StepAction1%22%20and%20useraction.name!%3D%22LastStep%22%20ORDER%20BY%20duration%20desc%0A&visualization=TABLE)"
     },
     {
       "name": "Markdown",
@@ -238,7 +238,7 @@
         "timeframe": null,
         "managementZone": null
       },
-      "markdown": "## [Slow Duration (>3m)](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid%20as%20%22User%22,%20duration%20as%20%22Duration%22%20%20FROM%20usersession%20where%0A%09duration%3E180000%20and%20useraction.name%3D%22Step1%22%20and%20useraction.name!%3D%22LastStep%22%20ORDER%20BY%20duration%20DESC%0A&visualization=TABLE)"
+      "markdown": "## [Slow Duration (>3m)](https://MyTenant/ui/user-sessions/query?sessionquery=select%20userid%20as%20%22User%22,%20duration%20as%20%22Duration%22%20%20FROM%20usersession%20where%0A%09duration%3E180000%20and%20useraction.name%3D%22StepAction1%22%20and%20useraction.name!%3D%22LastStep%22%20ORDER%20BY%20duration%20DESC%0A&visualization=TABLE)"
     },
     {
       "name": "User Sessions Query",
