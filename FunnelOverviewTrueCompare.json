@@ -624,7 +624,7 @@
         "managementZone": null
       },
       "customName": "Average Order Value",
-      "query": "select avg(revenueproperty) as \"Average Order Value\" FROM usersession where useraction.application=\"MyCompareApp\" and useraction.name=\"LastStep\"",
+      "query": "select avg(revenueproperty) as \"Average Order Value\" FROM usersession where useraction.application=\"MyCompareApp\" and useraction.name=\"CompareLastStep\"",
       "type": "SINGLE_VALUE", 
       "timeFrameShift": "-2h"
     }
