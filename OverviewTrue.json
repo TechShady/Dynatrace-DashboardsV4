@@ -73,22 +73,6 @@
       "tileType": "MARKDOWN",
       "configured": true,
       "bounds": {
-        "top": 304,
-        "left": 1368,
-        "width": 266,
-        "height": 38
-      },
-      "tileFilter": {
-        "timeframe": null,
-        "managementZone": null
-      },
-      "markdown": "## \ud83d\uded2 [MyFunnel Funnel](#dashboard;id=65312f05-ca6c-4896-b2b4-1bc8ce3da313)"
-    },
-    {
-      "name": "Markdown",
-      "tileType": "MARKDOWN",
-      "configured": true,
-      "bounds": {
         "top": 380,
         "left": 1368,
         "width": 266,
