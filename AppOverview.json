@@ -194,22 +194,6 @@
       "configured": true,
       "bounds": {
         "top": 760,
-        "left": 0,
-        "width": 266,
-        "height": 38
-      },
-      "tileFilter": {
-        "timeframe": null,
-        "managementZone": null
-      },
-      "markdown": "## [MyFunnel Overview](#dashboard;id=6e481cc8-bea9-46ba-b1f8-23ebcc1da313)"
-    },
-    {
-      "name": "Markdown",
-      "tileType": "MARKDOWN",
-      "configured": true,
-      "bounds": {
-        "top": 760,
         "left": 266,
         "width": 266,
         "height": 38
